@@ -1,0 +1,21 @@
+{
+  "name": "com.stvdev.starterpack",
+  "version": "0.0.1",
+  "displayName": "StvDEV Starterpack",
+  "description": "Starterpack",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+  "dependencies": {
+    "com.coffee.upm-git-extension": "https://github.com/mob-sakai/UpmGitExtension.git"
+ },
+ "keywords": [
+    "Starterpack",
+    "pack",
+    "start"
+  ],
+  "author": {
+    "name": "StvDEV",
+    "email": "stv233@stvdev.pro",
+    "url": "stvdev.pro"
+  }
+}
