@@ -8,9 +8,12 @@ namespace StvDEV.StarterPack
     /// </summary>
     public class GlobalEvent : Singleton<GlobalEvent>
     {
+#if UNITY_2020_1_OR_NEWER
         protected UnityEvent<List<object>> unityArgumentsEvent = new UnityEvent<List<object>>();
+#endif
         protected UnityEvent unityEvent = new UnityEvent();
 
+#if UNITY_2020_1_OR_NEWER
         /// <summary>
         /// Subscribe to an event with arguments.
         /// </summary>
@@ -19,6 +22,7 @@ namespace StvDEV.StarterPack
         {
             unityArgumentsEvent.AddListener(action);
         }
+#endif
 
         /// <summary>
         /// Subscribe to an event without arguments.
@@ -29,6 +33,7 @@ namespace StvDEV.StarterPack
             unityEvent.AddListener(action);
         }
 
+#if UNITY_2020_1_OR_NEWER
         /// <summary>
         /// Unsubscribe from an event with arguments.
         /// </summary>
@@ -37,6 +42,7 @@ namespace StvDEV.StarterPack
         {
             unityArgumentsEvent.RemoveListener(action);
         }
+#endif
 
         /// <summary>
         /// Unsubscribe from the event without arguments.
@@ -47,6 +53,7 @@ namespace StvDEV.StarterPack
             unityEvent.RemoveListener(action);
         }
 
+#if UNITY_2020_1_OR_NEWER
         /// <summary>
         /// Call an event with arguments.
         /// </summary>
@@ -56,6 +63,7 @@ namespace StvDEV.StarterPack
             unityArgumentsEvent?.Invoke(arguments);
             Invoke();
         }
+#endif
 
         /// <summary>
         /// Call an event without arguments.
@@ -70,7 +78,9 @@ namespace StvDEV.StarterPack
         /// </summary>
         public virtual void Dispose()
         {
+#if UNITY_2020_1_OR_NEWER
             unityArgumentsEvent.RemoveAllListeners();
+#endif
             unityEvent.RemoveAllListeners();
         }
     }
