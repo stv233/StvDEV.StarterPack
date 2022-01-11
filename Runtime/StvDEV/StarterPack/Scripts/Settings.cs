@@ -7,8 +7,6 @@ namespace StvDEV.StarterPack
     {
         public object GetSettingByName(string name)
         {
-            Debug.Log(this);
-            Debug.Log(name);
             return GetType().GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).GetValue(this);
         }
 
