@@ -6,7 +6,7 @@ namespace StvDEV.StarterPack
     /// <summary>
     /// Abstract global event.
     /// </summary>
-    public class GlobalEvent : Singleton<GlobalEvent>
+    public class GlobalEvent<T> : Singleton<T> where T : class
     {
 #if UNITY_2020_1_OR_NEWER
         protected UnityEvent<List<object>> unityArgumentsEvent = new UnityEvent<List<object>>();
