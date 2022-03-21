@@ -74,7 +74,7 @@ namespace StvDEV.StarterPack
             {
                 return (T)(object)PlayerPrefs.GetFloat(prefsName, (float)(object)defaultValue);
             }
-            else if (typeof(T) == typeof(float))
+            else if (typeof(T) == typeof(string))
             {
                 return (T)(object)PlayerPrefs.GetString(prefsName, (string)(object)defaultValue);
             }

@@ -53,5 +53,10 @@ namespace StvDEV.StarterPack
         /// On Awake.
         /// </summary>
         protected virtual void AwakeSingletone() { }
+
+        /// <summary>
+        /// On Start.
+        /// </summary>
+        protected virtual void Start() { }
     }
 }
