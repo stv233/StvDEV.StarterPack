@@ -54,6 +54,9 @@ namespace StvDEV.StarterPack
                 case string s:
                     PlayerPrefs.SetString(prefsName, s);
                     break;
+                case bool b:
+                    PlayerPrefs.SetString(prefsName, b.ToString());
+                    break;
                 default:
                     PlayerPrefs.SetString(prefsName, JsonUtility.ToJson(value));
                     break;
@@ -77,6 +80,10 @@ namespace StvDEV.StarterPack
             else if (typeof(T) == typeof(string))
             {
                 return (T)(object)PlayerPrefs.GetString(prefsName, (string)(object)defaultValue);
+            }
+            else if (typeof(T) == typeof(bool))
+            {
+                return (T)(object)bool.Parse(PlayerPrefs.GetString(prefsName, defaultValue.ToString()));
             }
             else
             {
