@@ -3,6 +3,7 @@
   "version": "0.0.8",
   "displayName": "StvDEV Starterpack",
   "description": "StvDEV Starter Package",
+  "documentationUrl": "https://docs.stvdev.pro/",
   "unity": "2019.1",
   "keywords": [
     "Starterpack",
