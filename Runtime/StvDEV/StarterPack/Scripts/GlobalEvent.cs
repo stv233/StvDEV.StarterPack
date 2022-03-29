@@ -6,6 +6,7 @@ namespace StvDEV.StarterPack
     /// <summary>
     /// Abstract global event.
     /// </summary>
+    /// <typeparam name="T">Type of Singleton</typeparam>
     public class GlobalEvent<T> : Singleton<T> where T : class
     {
 #if UNITY_2020_1_OR_NEWER
