@@ -18,7 +18,7 @@ namespace StvDEV.Vibration
 #else
         private static AndroidJavaClass unityPlayer;
         private static AndroidJavaObject currentActivity;
-        private static AndroidJavaObject vibrator;
+        private static AndroidJavaObject vibrator = null;
         private static AndroidJavaClass vibrationEffectClass;
         private static AndroidJavaObject vibrationEffect;
 #endif
