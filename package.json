@@ -1,9 +1,12 @@
 {
   "name": "com.stvdev.starterpack",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "displayName": "StvDEV Starterpack",
   "description": "StvDEV Starter Package",
   "documentationUrl": "https://docs.stvdev.pro/api/StarterPack/index.html",
+  "licensesUrl": "https://github.com/stv233/StarterPack/blob/master/LICENSE.md",
+  "changelogUrl": "https://github.com/stv233/StarterPack/commits/master",
+  "license": "MIT",
   "unity": "2019.1",
   "keywords": [
     "Starterpack",
