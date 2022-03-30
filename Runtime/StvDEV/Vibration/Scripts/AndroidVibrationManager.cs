@@ -42,6 +42,15 @@ namespace StvDEV.Vibration
         }
 
         /// <summary>
+        /// Vibrates an Android device for the specified length of time.
+        /// </summary>
+        /// <param name="length">Vibration length</param>
+        public static void Vibrate(VibrationLength length)
+        {
+            Vibrate((long)length);
+        }
+
+        /// <summary>
         /// Vibrates an Android device for the specified length of time in seconds, with a given amplitude.
         /// </summary>
         /// <param name="seconds">Vibration length</param>
@@ -64,11 +73,21 @@ namespace StvDEV.Vibration
         /// <summary>
         /// Vibrates an Android device for the specified length of time in milliseconds, with a given amplitude.
         /// </summary>
-        /// <param name="seconds">Vibration length</param>
+        /// <param name="milliseconds">Vibration length</param>
         /// <param name="amplitude">Amplitude (0-1)</param>
         public static void Vibrate(long milliseconds, float amplitude)
         {
             Vibrate(milliseconds, (int)(255 * amplitude));
+        }
+
+        /// <summary>
+        /// Vibrates an Android device for the specified length of time, with a given strength.
+        /// </summary>
+        /// <param name="length">Vibration length</param>
+        /// <param name="strength">Vibration strength</param>
+        public static void Vibrate(VibrationLength length, VibrationStrength strength)
+        {
+            Vibrate((long)length, (int)strength);
         }
 
         /// <summary>
@@ -132,7 +151,7 @@ namespace StvDEV.Vibration
         /// <summary>
         /// Returns a boolean value of whether the device is Android or not.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Is android</returns>
         public static bool IsAndroid()
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -145,7 +164,7 @@ namespace StvDEV.Vibration
         /// <summary>
         /// Returns an int value that is the Android SDK level.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>SDK level</returns>
         public static int GetSDKLevel()
         {
             var @class = AndroidJNI.FindClass("android.os.Build$VERSION");
