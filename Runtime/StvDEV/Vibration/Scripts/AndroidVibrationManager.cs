@@ -3,7 +3,7 @@
 namespace StvDEV.Vibration
 {
     /// <summary>
-    /// Performs Android device vibration
+    /// Performs Android device vibration.
     /// </summary>
     public static class AndroidVibrationManager
     {
