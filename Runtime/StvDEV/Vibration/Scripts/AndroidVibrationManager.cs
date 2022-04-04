@@ -107,7 +107,7 @@ namespace StvDEV.Vibration
                     }
 
                     vibrationEffect = vibrationEffectClass.CallStatic<AndroidJavaObject>("createOneShot", new object[] { milliseconds, amplitude });
-                    vibrator.Call("vibrate", vibrator);
+                    vibrator.Call("vibrate", vibrationEffect);
                 }
                 else
                 {
