@@ -1,6 +1,6 @@
 {
   "name": "com.stvdev.starterpack",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "displayName": "StvDEV Starterpack",
   "description": "StvDEV Starter Package",
   "documentationUrl": "https://docs.stvdev.pro/api/StarterPack/index.html",
@@ -14,8 +14,8 @@
     "start"
   ],
   "author": {
-    "name": "StvDEV",
-    "email": "stv233@stvdev.pro",
-    "url": "http://stvdev.pro"
+    "name": "StvDEV.Pro",
+    "email": "me@stvdev.pro",
+    "url": "https://stvdev.pro"
   }
 }
