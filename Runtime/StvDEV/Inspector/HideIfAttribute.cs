@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-namespace StvDEV.Inspector.Attributes
+namespace StvDEV.Inspector
 {
     /// <summary>
     /// Hides or disables the display of a field in the inspector by the value of a field of type bool.

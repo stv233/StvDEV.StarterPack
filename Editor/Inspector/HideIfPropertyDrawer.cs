@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEditor;
-using StvDEV.Inspector.Attributes;
 
-namespace StvDEV.Inspector.Drawers
+namespace StvDEV.Inspector
 {
-
     /// <summary>
     /// Hides or disables the display of fields marked with the <see cref="HideIfAttribute"/> attribute.
     /// </summary>
