@@ -60,7 +60,7 @@ namespace StvDEV.StarterPack
         {
             if (TryGetMenu<T>(out GUIMenu menu))
             {
-                menu.Open();
+                menu.Close();
             }
         }
 
@@ -155,7 +155,7 @@ namespace StvDEV.StarterPack
         /// </summary>
         private void FindAllMenu()
         {
-            foreach(GUIMenu menu in GameObject.FindObjectsOfType<GUIMenu>())
+            foreach(GUIMenu menu in GameObject.FindObjectsOfType<GUIMenu>(true))
             {
                 RegisterMenu(menu);
             }
