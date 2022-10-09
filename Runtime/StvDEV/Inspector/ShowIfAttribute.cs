@@ -8,7 +8,7 @@ namespace StvDEV.Inspector
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property |
         AttributeTargets.Class | AttributeTargets.Struct, Inherited = true)]
-    public class HideIfAttribute : PropertyAttribute
+    public class ShowIfAttribute : PropertyAttribute
     {
         /// <summary>
         /// Types of interaction on the target field.
@@ -36,14 +36,14 @@ namespace StvDEV.Inspector
         /// Hides the display of a field in the inspector by the value of a field of type bool.
         /// </summary>
         /// <param name="conditionalSourceField">Name of the field containing the condition</param>
-        public HideIfAttribute(string conditionalSourceField) : this(conditionalSourceField, HideType.Hide) { }
+        public ShowIfAttribute(string conditionalSourceField) : this(conditionalSourceField, HideType.Hide) { }
 
         /// <summary>
         /// Hides or disables the display of a field in the inspector by the value of a field of type bool.
         /// </summary>
         /// <param name="conditionalSourceField">Name of the field containing the condition</param>
         /// <param name="hideType">Hide type</param>
-        public HideIfAttribute(string conditionalSourceField, HideType hideType)
+        public ShowIfAttribute(string conditionalSourceField, HideType hideType)
         {
             this.conditionalSourceField = conditionalSourceField;
             this.hideInInspector = hideType == HideType.Hide;

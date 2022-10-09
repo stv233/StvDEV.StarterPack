@@ -4,14 +4,14 @@ using UnityEditor;
 namespace StvDEV.Inspector
 {
     /// <summary>
-    /// Hides or disables the display of fields marked with the <see cref="HideIfAttribute"/> attribute.
+    /// Hides or disables the display of fields marked with the <see cref="ShowIfAttribute"/> attribute.
     /// </summary>
-    [CustomPropertyDrawer(typeof(HideIfAttribute))]
-    public class HideIFPropertyDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(ShowIfAttribute))]
+    public class ShowIfPropertyDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            HideIfAttribute hideIf = (HideIfAttribute)attribute;
+            ShowIfAttribute hideIf = (ShowIfAttribute)attribute;
             bool enabled = GetConditionalHideAttributeResult(hideIf, property);
 
             bool wasEnabled = GUI.enabled;
@@ -32,7 +32,7 @@ namespace StvDEV.Inspector
         /// <returns>Property height</returns>
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            HideIfAttribute hideIf = (HideIfAttribute)attribute;
+            ShowIfAttribute hideIf = (ShowIfAttribute)attribute;
             bool enabled = GetConditionalHideAttributeResult(hideIf, property);
 
             if (!hideIf.HideInInspector || enabled)
@@ -48,14 +48,14 @@ namespace StvDEV.Inspector
         /// <summary>
         /// Checks the value of the target field.
         /// </summary>
-        /// <param name="hideIf">Attribute</param>
+        /// <param name="showIf">Attribute</param>
         /// <param name="property">Property</param>
         /// <returns>Field value</returns>
-        private bool GetConditionalHideAttributeResult(HideIfAttribute hideIf, SerializedProperty property)
+        private bool GetConditionalHideAttributeResult(ShowIfAttribute showIf, SerializedProperty property)
         {
             bool enabled = true;
             string propertyPath = property.propertyPath;
-            string conditionPath = propertyPath.Replace(property.name, hideIf.ConditionalSourceField); 
+            string conditionPath = propertyPath.Replace(property.name, showIf.ConditionalSourceField); 
             SerializedProperty sourcePropertyValue = property.serializedObject.FindProperty(conditionPath);
 
             if (sourcePropertyValue != null)
@@ -64,7 +64,7 @@ namespace StvDEV.Inspector
             }
             else
             {
-                Debug.LogWarning("Attempting to use a ConditionalHideAttribute but no matching SourcePropertyValue found in object: " + hideIf.ConditionalSourceField);
+                Debug.LogWarning("Attempting to use a ConditionalHideAttribute but no matching SourcePropertyValue found in object: " + showIf.ConditionalSourceField);
             }
 
             return enabled;
