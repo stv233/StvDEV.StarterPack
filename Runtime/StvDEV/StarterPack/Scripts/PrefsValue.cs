@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace StvDEV.StarterPack
@@ -58,7 +59,7 @@ namespace StvDEV.StarterPack
                     PlayerPrefs.SetString(prefsName, b.ToString());
                     break;
                 default:
-                    PlayerPrefs.SetString(prefsName, JsonUtility.ToJson(value));
+                    PlayerPrefs.SetString(prefsName, JsonConvert.SerializeObject(value));
                     break;
             }
         }
@@ -87,7 +88,7 @@ namespace StvDEV.StarterPack
             }
             else
             {
-                return JsonUtility.FromJson<T>(PlayerPrefs.GetString(prefsName,JsonUtility.ToJson(defaultValue)));
+                return JsonConvert.DeserializeObject<T>(PlayerPrefs.GetString(prefsName,JsonConvert.SerializeObject(defaultValue)));
             }
         }
     }
