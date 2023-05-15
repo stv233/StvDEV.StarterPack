@@ -6,7 +6,7 @@ using UnityEngine;
 namespace StvDEV.Inspector
 {
     /// <summary>
-    /// Draws a two-sided slider for the fields marked <see cref="AnnotatedBoolAttribute"/> attribute.
+    /// Draws the bool value as a drop-down list for the fields marked <see cref="AnnotatedBoolAttribute"/> attribute.
     /// </summary>
     [CustomPropertyDrawer(typeof(AnnotatedBoolAttribute))]
     public class AnnotatedBoolPropertyDrawer : PropertyDrawer
