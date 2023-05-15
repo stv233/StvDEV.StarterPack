@@ -64,13 +64,24 @@ namespace StvDEV.Inspector
             }
             else
             {
+                string fieldName = showIf.ConditionalSourceField;
+                bool inverse = fieldName.StartsWith("!");
+                if (inverse)
+                {
+                    fieldName = fieldName.Substring(1);
+                }
                 string propertyPath = property.propertyPath;
-                string conditionPath = propertyPath.Replace(property.name, showIf.ConditionalSourceField);
+                string conditionPath = propertyPath.Replace(property.name, fieldName);
                 SerializedProperty sourcePropertyValue = property.serializedObject.FindProperty(conditionPath);
 
                 if (sourcePropertyValue != null)
                 {
                     enabled = sourcePropertyValue.boolValue;
+
+                    if (inverse)
+                    {
+                        enabled = !enabled;
+                    }
                 }
                 else
                 {
