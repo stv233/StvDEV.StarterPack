@@ -54,18 +54,30 @@ namespace StvDEV.Inspector
         private bool GetConditionalHideAttributeResult(ShowIfAttribute showIf, SerializedProperty property)
         {
             bool enabled = true;
-            string propertyPath = property.propertyPath;
-            string conditionPath = propertyPath.Replace(property.name, showIf.ConditionalSourceField); 
-            SerializedProperty sourcePropertyValue = property.serializedObject.FindProperty(conditionPath);
 
-            if (sourcePropertyValue != null)
+            if (showIf.ByPredicate)
             {
-                enabled = sourcePropertyValue.boolValue;
+                if (showIf.Predicate != null)
+                {
+                    enabled = showIf.Predicate.Invoke();
+                }
             }
             else
             {
-                Debug.LogWarning("Attempting to use a ConditionalHideAttribute but no matching SourcePropertyValue found in object: " + showIf.ConditionalSourceField);
+                string propertyPath = property.propertyPath;
+                string conditionPath = propertyPath.Replace(property.name, showIf.ConditionalSourceField);
+                SerializedProperty sourcePropertyValue = property.serializedObject.FindProperty(conditionPath);
+
+                if (sourcePropertyValue != null)
+                {
+                    enabled = sourcePropertyValue.boolValue;
+                }
+                else
+                {
+                    Debug.LogWarning("Attempting to use a ConditionalHideAttribute but no matching SourcePropertyValue found in object: " + showIf.ConditionalSourceField);
+                }
             }
+
 
             return enabled;
         }
