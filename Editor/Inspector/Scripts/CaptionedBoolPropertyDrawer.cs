@@ -6,15 +6,15 @@ using UnityEngine;
 namespace StvDEV.Inspector
 {
     /// <summary>
-    /// Draws the bool value as a drop-down list for the fields marked <see cref="AnnotatedBoolAttribute"/> attribute.
+    /// Draws the bool value as a drop-down list for the fields marked <see cref="CaptionedBoolAttribute"/> attribute.
     /// </summary>
-    [CustomPropertyDrawer(typeof(AnnotatedBoolAttribute))]
-    public class AnnotatedBoolPropertyDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(CaptionedBoolAttribute))]
+    public class CaptionedBoolPropertyDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             Rect ctrlRect = EditorGUI.PrefixLabel(position, label);
-            AnnotatedBoolAttribute attributeObject = (AnnotatedBoolAttribute)attribute;
+            CaptionedBoolAttribute attributeObject = (CaptionedBoolAttribute)attribute;
             if (property.propertyType == SerializedPropertyType.Boolean)
             {
                 property.boolValue = EditorGUI.Popup(ctrlRect, property.boolValue ? 1 : 0, 

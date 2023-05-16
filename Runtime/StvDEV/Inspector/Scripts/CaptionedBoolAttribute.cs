@@ -10,7 +10,7 @@ namespace StvDEV.Inspector
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property |
        AttributeTargets.Class | AttributeTargets.Struct, Inherited = true)]
-    public class AnnotatedBoolAttribute : PropertyAttribute
+    public class CaptionedBoolAttribute : PropertyAttribute
     {
         private string _true;
         private string _false;
@@ -30,7 +30,7 @@ namespace StvDEV.Inspector
         /// </summary>
         /// <param name="trueAnnotation">True annotation</param>
         /// <param name="falseAnnotation">False annotation</param>
-        public AnnotatedBoolAttribute(string trueAnnotation = "Enabled", string falseAnnotation = "Disabled")
+        public CaptionedBoolAttribute(string trueAnnotation = "Enabled", string falseAnnotation = "Disabled")
         {
             _true = trueAnnotation;
             _false = falseAnnotation;
