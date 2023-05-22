@@ -1,12 +1,10 @@
 {
-    "name": "StvDEV.Editor.Inspector",
-    "rootNamespace": "StvDEV.Editor.Inspector",
+    "name": "StvDEV.UI",
+    "rootNamespace": "StvDEV.UI",
     "references": [
-        "GUID:9a2f18c2c161a32469281b7f51049ffb"
+        "GUID:e6419bcc911656c41abb8b43e313b57b"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

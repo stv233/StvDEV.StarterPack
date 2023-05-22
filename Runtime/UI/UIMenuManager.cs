@@ -1,0 +1,168 @@
+using StvDEV.Patterns;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
+
+namespace StvDEV.UI
+{
+    /// <summary>
+    /// GUI Menu Management Manager.
+    /// </summary>
+    [MovedFrom(true, "StvDEV.StarterPack", "StvDEV.StarterPack", "GUIManager")]
+    [AddComponentMenu("StvDEV/UI/UI Menu Manager")]
+    public class UIMenuManager : MonoBehaviourSingleton<UIMenuManager>
+    {
+        private readonly Dictionary<string, UIMenu> _menus = new Dictionary<string, UIMenu>();
+
+        protected override void AwakeSingletone()
+        {
+            FindAllMenu();
+        }
+
+        /// <summary>
+        /// Open the menu.
+        /// </summary>
+        /// <param name="menuName">Menu name</param>
+        public static void OpenMenu(string menuName)
+        {
+            if (TryGetMenu(menuName, out UIMenu menu))
+            {
+                menu.Open();    
+            }
+        }
+
+        /// <summary>
+        /// Opens the menu by its type.
+        /// </summary>
+        /// <typeparam name="T">Menu type</typeparam>
+        public static void OpenMenu<T>() where T : UIMenu
+        {
+            if (TryGetMenu<T>(out UIMenu menu))
+            {
+                menu.Open();
+            }
+        }
+
+        /// <summary>
+        /// Close the menu.
+        /// </summary>
+        /// <param name="menuName">Menu name</param>
+        public static void CloseMenu(string menuName)
+        {
+            if (TryGetMenu(menuName, out UIMenu menu))
+            {
+                menu.Close();
+            }
+        }
+
+        /// <summary>
+        /// Closes the menu by its type.
+        /// </summary>
+        /// <typeparam name="T">Menu type</typeparam>
+        public static void CloseMenu<T>() where T: UIMenu
+        {
+            if (TryGetMenu<T>(out UIMenu menu))
+            {
+                menu.Close();
+            }
+        }
+
+        /// <summary>
+        /// Returns the menu by its name
+        /// </summary>
+        /// <param name="menuName">Menu name</param>
+        /// <returns>Menu</returns>
+        public static UIMenu GetMenu(string menuName)
+        {
+            if (MenuExist(menuName))
+            {
+                return Instance._menus[menuName];
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Tries to get a menu by its name.
+        /// </summary>
+        /// <param name="menuName">Menu name</param>
+        /// <param name="menu">Result</param>
+        /// <returns>Success</returns>
+        public static bool TryGetMenu(string menuName, out UIMenu menu)
+        {
+            menu = GetMenu(menuName);
+            if (menu != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Gets the menu by its type.
+        /// </summary>
+        /// <typeparam name="T">Menu type</typeparam>
+        /// <returns>Menu</returns>
+        public static UIMenu GetMenu<T>() where T: UIMenu
+        {
+            return Instance._menus.Values.Where(x => x.GetType() == typeof(T)).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Tries to get a menu by its type.
+        /// </summary>
+        /// <typeparam name="T">Menu type</typeparam>
+        /// <param name="menu">Result</param>
+        /// <returns>Success</returns>
+        public static bool TryGetMenu<T>(out UIMenu menu) where T: UIMenu
+        {
+            menu = GetMenu<T>();
+            if (menu != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Checks the menu for existence.
+        /// </summary>
+        /// <param name="menuName">Menu name</param>
+        /// <returns>Existence</returns>
+        public static bool MenuExist(string menuName)
+        {
+            return Instance._menus.ContainsKey(menuName);
+        }
+
+        /// <summary>
+        /// Checks the menu for existence.
+        /// </summary>
+        /// <typeparam name="T">Menu type</typeparam>
+        /// <returns>Existence</returns>
+        public static bool MenuExist<T>() where T : UIMenu
+        {
+            return TryGetMenu<T>(out UIMenu menu);
+        }
+
+        /// <summary>
+        /// Registers the menu in the manager.
+        /// </summary>
+        /// <param name="menu">Menu</param>
+        public static void RegisterMenu(UIMenu menu)
+        {
+            Instance._menus[menu.gameObject.name] = menu;
+        }
+
+        /// <summary>
+        /// Searches for all menus on the level.
+        /// </summary>
+        private static void FindAllMenu()
+        {
+            foreach(UIMenu menu in GameObject.FindObjectsOfType<UIMenu>(true))
+            {
+                RegisterMenu(menu);
+            }
+        }
+    }
+}
