@@ -38,7 +38,7 @@ namespace StvDEV.UI
         /// <typeparam name="T">Menu type</typeparam>
         public static void OpenMenu<T>() where T : UIMenu
         {
-            if (TryGetMenu<T>(out UIMenu menu))
+            if (TryGetMenu(out T menu))
             {
                 menu.Open();
             }
@@ -62,7 +62,7 @@ namespace StvDEV.UI
         /// <typeparam name="T">Menu type</typeparam>
         public static void CloseMenu<T>() where T: UIMenu
         {
-            if (TryGetMenu<T>(out UIMenu menu))
+            if (TryGetMenu(out T menu))
             {
                 menu.Close();
             }
@@ -104,9 +104,9 @@ namespace StvDEV.UI
         /// </summary>
         /// <typeparam name="T">Menu type</typeparam>
         /// <returns>Menu</returns>
-        public static UIMenu GetMenu<T>() where T: UIMenu
+        public static T GetMenu<T>() where T: UIMenu
         {
-            return Instance._menus.Values.Where(x => x.GetType() == typeof(T)).FirstOrDefault();
+            return Instance._menus.Values.Where(x => x.GetType() == typeof(T)).FirstOrDefault() as T;
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace StvDEV.UI
         /// <typeparam name="T">Menu type</typeparam>
         /// <param name="menu">Result</param>
         /// <returns>Success</returns>
-        public static bool TryGetMenu<T>(out UIMenu menu) where T: UIMenu
+        public static bool TryGetMenu<T>(out T menu) where T: UIMenu
         {
             menu = GetMenu<T>();
             if (menu != null)
@@ -142,7 +142,7 @@ namespace StvDEV.UI
         /// <returns>Existence</returns>
         public static bool MenuExist<T>() where T : UIMenu
         {
-            return TryGetMenu<T>(out UIMenu menu);
+            return TryGetMenu(out T menu);
         }
 
         /// <summary>
