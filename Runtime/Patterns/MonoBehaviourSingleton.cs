@@ -40,6 +40,9 @@ namespace StvDEV.Patterns
         /// </summary>
         public static bool InstanceIsNotNull => _instance;
 
+        /// <summary>
+        /// Awakes this instance
+        /// </summary>
         private void Awake()
         {
             if (!_instance)

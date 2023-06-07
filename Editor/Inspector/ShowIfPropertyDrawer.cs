@@ -9,6 +9,12 @@ namespace StvDEV.Inspector
     [CustomPropertyDrawer(typeof(ShowIfAttribute))]
     public class ShowIfPropertyDrawer : PropertyDrawer
     {
+        /// <summary>
+        /// Ons the gui using the specified position
+        /// </summary>
+        /// <param name="position">The position</param>
+        /// <param name="property">The property</param>
+        /// <param name="label">The label</param>
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             ShowIfAttribute hideIf = (ShowIfAttribute)attribute;
@@ -25,7 +31,7 @@ namespace StvDEV.Inspector
         }
 
         /// <summary>
-        /// Calculate the height of property so that when the property needs to be hidden the following properties that are being drawn don’t overlap.
+        /// Calculate the height of property so that when the property needs to be hidden the following properties that are being drawn donï¿½t overlap.
         /// </summary>
         /// <param name="property">Property</param>
         /// <param name="label">Property label</param>

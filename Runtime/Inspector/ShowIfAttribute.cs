@@ -31,9 +31,21 @@ namespace StvDEV.Inspector
         private bool _byBool = false;
         private bool _value = false; 
 
+        /// <summary>
+        /// Gets the value of the conditional source field.
+        /// </summary>
         public string ConditionalSourceField => _conditionalSourceField;
+        /// <summary>
+        /// Gets the value of the hide in inspector.
+        /// </summary>
         public bool HideInInspector => _hideInInspector;
+        /// <summary>
+        /// Gets the value of the by value.
+        /// </summary>
         public bool ByValue => _byBool;  
+        /// <summary>
+        /// Gets the value of the value.
+        /// </summary>
         public bool Value => _value;  
 
         /// <summary>

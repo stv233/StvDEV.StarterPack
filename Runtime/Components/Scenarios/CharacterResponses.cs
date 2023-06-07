@@ -13,18 +13,24 @@ namespace StvDEV.Components.Scenarios
     [AddComponentMenu("StvDEV/Scenarios/Character Responses")]
     public class CharacterResponses : MonoBehaviour
     {
+        /// <summary>
+        /// The response
+        /// </summary>
         [Serializable]
         private struct Response
         {
+
             [Header("Settings")]
             [Tooltip("Response ID.")]
             [SerializeField] private string _id;
+
             [Tooltip("Response duration.")]
             [SerializeField] private float _duration;
 
             [Header("Content")]
             [Multiline(3), Tooltip("Response text.")]
             [SerializeField] private string _text;
+
             [Tooltip("Response audioclip.")]
             [SerializeField] private AudioClip _clip;
 

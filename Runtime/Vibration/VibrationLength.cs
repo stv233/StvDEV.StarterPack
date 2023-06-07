@@ -1,4 +1,4 @@
-﻿namespace StvDEV.Vibration
+namespace StvDEV.Vibration
 {
     /// <summary>
     /// Vibration length.

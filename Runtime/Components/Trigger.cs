@@ -21,8 +21,10 @@ namespace StvDEV.Components
         [Header("Evenetns")]
         [Tooltip("Occurs when collider enter in trigger.")]
         [SerializeField] private UnityEvent<Collider> _onTriggerEnter;
+
         [Tooltip("Occurs when collider stay in trigger.")]
         [SerializeField] private UnityEvent<Collider> _onTriggerStay;
+
         [Tooltip("Occurs when collider exit from trigger.")]
         [SerializeField] private UnityEvent<Collider> _onTriggerExit;
 
@@ -41,6 +43,10 @@ namespace StvDEV.Components
         /// </summary>
         public UnityEvent<Collider> TriggerExit => _onTriggerExit;
 
+        /// <summary>
+        /// Ons the trigger enter using the specified other
+        /// </summary>
+        /// <param name="other">The other</param>
         private void OnTriggerEnter(Collider other)
         {
             if (!_filterByTag || other.CompareTag(_tag))
@@ -49,6 +55,10 @@ namespace StvDEV.Components
             }
         }
 
+        /// <summary>
+        /// Ons the trigger stay using the specified other
+        /// </summary>
+        /// <param name="other">The other</param>
         private void OnTriggerStay(Collider other)
         {
             if (!_filterByTag || other.CompareTag(_tag))
@@ -57,6 +67,10 @@ namespace StvDEV.Components
             }
         }
 
+        /// <summary>
+        /// Ons the trigger exit using the specified other
+        /// </summary>
+        /// <param name="other">The other</param>
         private void OnTriggerExit(Collider other)
         {
             if (!_filterByTag || other.CompareTag(_tag))

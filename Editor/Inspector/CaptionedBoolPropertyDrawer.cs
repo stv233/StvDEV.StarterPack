@@ -11,6 +11,12 @@ namespace StvDEV.Inspector
     [CustomPropertyDrawer(typeof(CaptionedBoolAttribute))]
     public class CaptionedBoolPropertyDrawer : PropertyDrawer
     {
+        /// <summary>
+        /// Ons the gui using the specified position
+        /// </summary>
+        /// <param name="position">The position</param>
+        /// <param name="property">The property</param>
+        /// <param name="label">The label</param>
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             Rect ctrlRect = EditorGUI.PrefixLabel(position, label);

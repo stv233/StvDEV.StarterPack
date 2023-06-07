@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace StvDEV.Vibration
 {
@@ -16,6 +16,7 @@ namespace StvDEV.Vibration
     	private static AndroidJavaClass _vibrationEffectClass;
 		private static AndroidJavaObject _vibrationEffect;
 #else
+
         private static AndroidJavaClass _unityPlayer;
         private static AndroidJavaObject _currentActivity;
         private static AndroidJavaObject _vibrator = null;
