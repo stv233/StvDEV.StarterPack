@@ -11,8 +11,8 @@ namespace StvDEV.Vibration
 
 #if UNITY_ANDROID && !UNITY_EDITOR
         private static AndroidJavaClass _unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        private static AndroidJavaObject _currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-        private static AndroidJavaObject _vibrator = currentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator");
+        private static AndroidJavaObject _currentActivity = _unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+        private static AndroidJavaObject _vibrator = _currentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator");
     	private static AndroidJavaClass _vibrationEffectClass;
 		private static AndroidJavaObject _vibrationEffect;
 #else
