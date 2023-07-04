@@ -3,7 +3,8 @@
     "rootNamespace": "StvDEV.Components",
     "references": [
         "Unity.TextMeshPro",
-        "StvDEV.Inspector"
+        "StvDEV.Inspector",
+        "StvDEV.Patterns"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
