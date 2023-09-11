@@ -4,7 +4,8 @@
     "references": [
         "Unity.TextMeshPro",
         "StvDEV.Inspector",
-        "StvDEV.Patterns"
+        "StvDEV.Patterns",
+        "StvDEV.Types"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

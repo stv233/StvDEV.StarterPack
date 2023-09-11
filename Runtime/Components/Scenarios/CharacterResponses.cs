@@ -1,9 +1,11 @@
+using StvDEV.Types;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 namespace StvDEV.Components.Scenarios
 {
@@ -19,6 +21,38 @@ namespace StvDEV.Components.Scenarios
         [Serializable]
         private struct Response
         {
+            /// <summary>
+            /// Response localization.
+            /// </summary>
+            [Serializable]
+            public struct Localization
+            {
+                [Header("Language")]
+                [Tooltip("Language identifier.")]
+                [SerializeField] private string _language;
+
+                [Header("Content")]
+                [Multiline(3), Tooltip("Localized response text.")]
+                [SerializeField] private string _text;
+
+                [Tooltip("Localized response audioclip")]
+                [SerializeField] private AudioClip _clip;
+
+                /// <summary>
+                /// Language identifier.
+                /// </summary>
+                public string Language => _language;
+            
+                /// <summary>
+                /// Localized response text.
+                /// </summary>
+                public string Text => _text;
+
+                /// <summary>
+                /// Localized response audilclip.
+                /// </summary>
+                public AudioClip Clip => _clip;
+            }
 
             [Header("Settings")]
             [Tooltip("Response ID.")]
@@ -33,6 +67,10 @@ namespace StvDEV.Components.Scenarios
 
             [Tooltip("Response audioclip.")]
             [SerializeField] private AudioClip _clip;
+
+            [Header("Localization")]
+            [Tooltip("Localized response variants.")]
+            [SerializeField] private List<Localization> _localizations;
 
             /// <summary>
             /// Response ID.
@@ -53,6 +91,22 @@ namespace StvDEV.Components.Scenarios
             /// Response audioclip.
             /// </summary>
             public AudioClip Clip => _clip;
+
+            /// <summary>
+            /// Localized response variants.
+            /// </summary>
+            public Dictionary<string, Localization> Localizations => _localizations.ToDictionary(x => x.Language, x => x);
+        }
+
+        private static PrefsValue<string> _selectedLanguage = new PrefsValue<string>("StvDEV/Components/Scenarios/CharacterResponses/Language", "RU-ru");
+
+        /// <summary>
+        /// Current language.
+        /// </summary>
+        public static string Language
+        {
+            get => _selectedLanguage.Value;
+            set => _selectedLanguage.Value = value;
         }
 
         [Header("Responses")]
@@ -75,16 +129,33 @@ namespace StvDEV.Components.Scenarios
             Response response = _responses.Where(x => x.Id == responseId).FirstOrDefault();
             if (!string.IsNullOrEmpty(response.Id))
             {
+                string text = response.Text;
+                AudioClip clip = response.Clip;
+
+                if (response.Localizations.ContainsKey(Language))
+                {
+                    Response.Localization localization = response.Localizations[Language];
+                    if (!string.IsNullOrEmpty(localization.Text))
+                    {
+                        text = localization.Text;
+                    }
+                    if (localization.Clip != null)
+                    {
+                        clip = localization.Clip;
+                    }
+                }
+
                 if (_subtitlesText)
                 {
-                    _subtitlesText?.SetText(response.Text);
+                    _subtitlesText?.SetText(text);
                     _subtitlesText?.gameObject.SetActive(true);
                 }
-                if (response.Clip)
+
+                if (clip)
                 {
                     if (_audioSource)
                     {
-                        _audioSource?.PlayOneShot(response.Clip);
+                        _audioSource?.PlayOneShot(clip);
                     }
                 }
                 StartCoroutine(HideDelay(response.Duration));
