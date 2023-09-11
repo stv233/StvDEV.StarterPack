@@ -1,3 +1,4 @@
+using StvDEV.Components.Localization;
 using StvDEV.Types;
 using System;
 using System.Collections;
@@ -98,17 +99,6 @@ namespace StvDEV.Components.Scenarios
             public Dictionary<string, Localization> Localizations => _localizations.ToDictionary(x => x.Language, x => x);
         }
 
-        private static PrefsValue<string> _selectedLanguage = new PrefsValue<string>("StvDEV/Localization/Language", "ru-RU");
-
-        /// <summary>
-        /// Current language.
-        /// </summary>
-        public static string Language
-        {
-            get => _selectedLanguage.Value;
-            set => _selectedLanguage.Value = value;
-        }
-
         [Header("Responses")]
         [Tooltip("Responses list.")]
         [SerializeField] private List<Response> _responses;
@@ -132,9 +122,9 @@ namespace StvDEV.Components.Scenarios
                 string text = response.Text;
                 AudioClip clip = response.Clip;
 
-                if (response.Localizations.ContainsKey(Language))
+                if (response.Localizations.ContainsKey(LocalizationManager.Language))
                 {
-                    Response.Localization localization = response.Localizations[Language];
+                    Response.Localization localization = response.Localizations[LocalizationManager.Language];
                     if (!string.IsNullOrEmpty(localization.Text))
                     {
                         text = localization.Text;

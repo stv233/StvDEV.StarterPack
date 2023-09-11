@@ -39,17 +39,6 @@ namespace StvDEV.Components.Localization
             public string Text => _text;
         }
 
-        private static PrefsValue<string> _selectedLanguage = new PrefsValue<string>("StvDEV/Localization/Language", "ru-RU");
-    
-        /// <summary>
-        /// Current language.
-        /// </summary>
-        public static string Language
-        {
-            get => _selectedLanguage.Value;
-            set => _selectedLanguage.Value = value;
-        }
-
         [Header("Localization")]
         [Tooltip("Localized text variants.")]
         [SerializeField] private List<Localization> _localizations;
@@ -60,9 +49,9 @@ namespace StvDEV.Components.Localization
 
             Dictionary<string, string> localizations = _localizations.ToDictionary(x => x.Language, x => x.Text);
 
-            if (localizations.ContainsKey(Language))
+            if (localizations.ContainsKey(LocalizationManager.Language))
             {
-                text.SetText(localizations[Language]);
+                text.SetText(localizations[LocalizationManager.Language]);
             }
         }
     }
