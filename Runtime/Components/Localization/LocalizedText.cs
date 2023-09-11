@@ -49,7 +49,7 @@ namespace StvDEV.Components.Localization
 
         [Header("Localization")]
         [Tooltip("Localized text variants.")]
-        private List<Localization> _localizations;
+        [SerializeField] private List<Localization> _localizations;
 
         private void Start()
         {
