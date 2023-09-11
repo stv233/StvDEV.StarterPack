@@ -26,7 +26,7 @@ namespace StvDEV.Components.Scenarios
             /// Response localization.
             /// </summary>
             [Serializable]
-            public struct Localization
+            public struct Localization : ILocalizationData
             {
                 [Header("Language")]
                 [Tooltip("Language identifier.")]

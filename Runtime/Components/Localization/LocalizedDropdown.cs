@@ -1,4 +1,3 @@
-using StvDEV.Types;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,13 +8,13 @@ using UnityEngine;
 namespace StvDEV.Components.Localization
 {
     /// <summary>
-    /// Component to localize text.
+    /// Component to localize dropdown.
     /// </summary>
-    [RequireComponent(typeof(TMP_Text)), AddComponentMenu("StvDEV/Localization/Localized Text")]
-    public class LocalizedText : MonoBehaviour
+    [RequireComponent(typeof(TMP_Dropdown)), AddComponentMenu("StvDEV/Localization/Localized Dropdown")]
+    public class LocalizedDropdown : MonoBehaviour
     {
         /// <summary>
-        /// Text localization variant.
+        /// Dropdown localization variant.
         /// </summary>
         [Serializable]
         private struct Localization : ILocalizationData
@@ -25,18 +24,18 @@ namespace StvDEV.Components.Localization
             [SerializeField] private string _language;
 
             [Header("Content")]
-            [Multiline(3), Tooltip("Localized text.")]
-            [SerializeField] private string _text;
+            [Tooltip("Localized options.")]
+            [SerializeField] private List<string> _options;
 
             /// <summary>
             /// Language identifier.
             /// </summary>
             public string Language => _language;
-        
+
             /// <summary>
-            /// Localized text.
+            /// Localized options.
             /// </summary>
-            public string Text => _text;
+            public List<string> Options => _options;
         }
 
         [Header("Localization")]
@@ -55,18 +54,29 @@ namespace StvDEV.Components.Localization
         }
 
         /// <summary>
-        /// Set localize text by language.
+        /// Update localized text by language.
         /// </summary>
         /// <param name="language">Language</param>
         public void SetLanguage(string language)
         {
-            TMP_Text text = GetComponent<TMP_Text>();
+            TMP_Dropdown dropdown = GetComponent<TMP_Dropdown>();
 
-            Dictionary<string, string> localizations = _localizations.ToDictionary(x => x.Language, x => x.Text);
+            Dictionary<string, List<string>> localizations = _localizations.ToDictionary(x => x.Language, x => x.Options);
 
             if (localizations.ContainsKey(language))
             {
-                text.SetText(localizations[language]);
+                List<string> options = localizations[language];
+                for (var i = 0; i < dropdown.options.Count; i++)
+                {
+                    if (i < options.Count)
+                    {
+                        dropdown.options[i].text = options[i];
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
             }
         }
     }

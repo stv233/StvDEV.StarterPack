@@ -1,5 +1,6 @@
 using StvDEV.Patterns;
 using StvDEV.Types;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,20 @@ using UnityEngine.Events;
 
 namespace StvDEV.Components.Localization
 {
+    /// <summary>
+    /// Data storage for a localized component.
+    /// </summary>
+    public interface ILocalizationData
+    {
+        /// <summary>
+        /// Language identifier.
+        /// </summary>
+        public string Language { get; }
+    }
+
+    /// <summary>
+    /// Localization management component.
+    /// </summary>
     [AddComponentMenu("StvDEV/Localization/Localization Manager")]
     public class LocalizationManager : MonoBehaviourSingleton<LocalizationManager>
     {
