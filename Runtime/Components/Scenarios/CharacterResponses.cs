@@ -98,7 +98,7 @@ namespace StvDEV.Components.Scenarios
             public Dictionary<string, Localization> Localizations => _localizations.ToDictionary(x => x.Language, x => x);
         }
 
-        private static PrefsValue<string> _selectedLanguage = new PrefsValue<string>("StvDEV/Components/Scenarios/CharacterResponses/Language", "RU-ru");
+        private static PrefsValue<string> _selectedLanguage = new PrefsValue<string>("StvDEV/Localization/Language", "RU-ru");
 
         /// <summary>
         /// Current language.
