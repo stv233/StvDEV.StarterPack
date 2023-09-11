@@ -36,7 +36,7 @@ namespace StvDEV.Components.Localization
             public string Text => _text;
         }
 
-        private static PrefsValue<string> _selectedLanguage = new PrefsValue<string>("StvDEV/Localization/Language", "RU-ru");
+        private static PrefsValue<string> _selectedLanguage = new PrefsValue<string>("StvDEV/Localization/Language", "ru-RU");
     
         /// <summary>
         /// Current language.
