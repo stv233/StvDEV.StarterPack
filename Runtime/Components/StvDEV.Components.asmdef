@@ -5,7 +5,8 @@
         "Unity.TextMeshPro",
         "StvDEV.Inspector",
         "StvDEV.Patterns",
-        "StvDEV.Types"
+        "StvDEV.Types",
+        "StvDEV.Extensions"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

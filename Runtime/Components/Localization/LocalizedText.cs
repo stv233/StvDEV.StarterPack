@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace StvDEV.Components.Localization
 {
+    /// <summary>
+    /// Component to localize text.
+    /// </summary>
     [RequireComponent(typeof(TMP_Text)), AddComponentMenu("StvDEV/Localization/Localized Text")]
     public class LocalizedText : MonoBehaviour
     {
@@ -22,7 +25,7 @@ namespace StvDEV.Components.Localization
             [SerializeField] private string _language;
 
             [Header("Content")]
-            [Tooltip("Localized text.")]
+            [Multiline(3), Tooltip("Localized text.")]
             [SerializeField] private string _text;
 
             /// <summary>
