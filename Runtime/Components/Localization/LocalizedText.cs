@@ -45,13 +45,24 @@ namespace StvDEV.Components.Localization
 
         private void Start()
         {
+            LocalizationManager.LanguageChanged.AddListener(SetLanguage);
+            SetLanguage(LocalizationManager.Language);
+        }
+
+        private void OnDisable()
+        {
+            LocalizationManager.LanguageChanged.RemoveListener(SetLanguage);
+        }
+
+        public void SetLanguage(string language)
+        {
             TMP_Text text = GetComponent<TMP_Text>();
 
             Dictionary<string, string> localizations = _localizations.ToDictionary(x => x.Language, x => x.Text);
 
-            if (localizations.ContainsKey(LocalizationManager.Language))
+            if (localizations.ContainsKey(language))
             {
-                text.SetText(localizations[LocalizationManager.Language]);
+                text.SetText(localizations[language]);
             }
         }
     }
