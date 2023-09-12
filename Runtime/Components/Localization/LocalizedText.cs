@@ -12,7 +12,7 @@ namespace StvDEV.Components.Localization
     /// Component to localize text.
     /// </summary>
     [RequireComponent(typeof(TMP_Text)), AddComponentMenu("StvDEV/Localization/Localized Text")]
-    public class LocalizedText : MonoBehaviour
+    public class LocalizedText : LocalizedComponent
     {
         /// <summary>
         /// Text localization variant.
@@ -58,7 +58,7 @@ namespace StvDEV.Components.Localization
         /// Set localize text by language.
         /// </summary>
         /// <param name="language">Language</param>
-        public void SetLanguage(string language)
+        public override void SetLanguage(string language)
         {
             TMP_Text text = GetComponent<TMP_Text>();
 

@@ -11,7 +11,7 @@ namespace StvDEV.Components.Localization
     /// Component to localize dropdown.
     /// </summary>
     [RequireComponent(typeof(TMP_Dropdown)), AddComponentMenu("StvDEV/Localization/Localized Dropdown")]
-    public class LocalizedDropdown : MonoBehaviour
+    public class LocalizedDropdown : LocalizedComponent
     {
         /// <summary>
         /// Dropdown localization variant.
@@ -57,7 +57,7 @@ namespace StvDEV.Components.Localization
         /// Update localized text by language.
         /// </summary>
         /// <param name="language">Language</param>
-        public void SetLanguage(string language)
+        public override void SetLanguage(string language)
         {
             TMP_Dropdown dropdown = GetComponent<TMP_Dropdown>();
 
