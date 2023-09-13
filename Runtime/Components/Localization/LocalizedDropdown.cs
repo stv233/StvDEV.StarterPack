@@ -78,6 +78,8 @@ namespace StvDEV.Components.Localization
                     }
                 }
             }
+
+            dropdown.RefreshShownValue();
         }
     }
 }
