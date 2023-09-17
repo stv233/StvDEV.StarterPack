@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
-namespace StvDEV.UI
+namespace StvDEV.Components.UI
 {
     /// <summary>
     /// GUI Menu Management Manager.

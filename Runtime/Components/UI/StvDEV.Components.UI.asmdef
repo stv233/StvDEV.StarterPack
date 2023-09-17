@@ -2,7 +2,9 @@
     "name": "StvDEV.UI",
     "rootNamespace": "StvDEV.UI",
     "references": [
-        "GUID:e6419bcc911656c41abb8b43e313b57b"
+        "GUID:e6419bcc911656c41abb8b43e313b57b",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:128540c118fa97c48a9680448b1c2037"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

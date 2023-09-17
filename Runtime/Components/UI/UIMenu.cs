@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Scripting.APIUpdating;
 
-namespace StvDEV.UI
+namespace StvDEV.Components.UI
 {
     /// <summary>
     /// UI Menu basic component.
