@@ -4,9 +4,9 @@ using System;
 namespace StvDEV.Inspector
 {
     /// <summary>
-    /// Disables a field in the inspector by when application running.
+    /// Disables the a field in the inspector.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property |
         AttributeTargets.Class | AttributeTargets.Struct, Inherited = true)]
-    public class DisableOnRuntimeAttribute : PropertyAttribute { }
+    public class ReadOnlyAttribute : PropertyAttribute { }
 }
