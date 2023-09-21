@@ -6,6 +6,7 @@ namespace StvDEV.Components.UI.Fields
     /// <summary>
     /// Field with checkbox.
     /// </summary>
+    [AddComponentMenu("StvDEV/UI/Fields/Chackbox Field")]
     public class CheckboxField : Field<bool>
     {
         [Header("Checkbox")]

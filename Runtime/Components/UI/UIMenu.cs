@@ -9,7 +9,7 @@ namespace StvDEV.Components.UI
     /// UI Menu basic component.
     /// </summary>
     [MovedFrom(true, "StvDEV.StarterPack", "StvDEV.StarterPack", "GUIMenu")]
-    public class UIMenu : MonoBehaviour 
+    public abstract class UIMenu : MonoBehaviour 
     {
         [Header("Events")]
         [SerializeField] private UnityEvent _opened;

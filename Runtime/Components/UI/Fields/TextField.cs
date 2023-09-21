@@ -6,6 +6,7 @@ namespace StvDEV.Components.UI.Fields
     /// <summary>
     /// Text field.
     /// </summary>
+    [AddComponentMenu("StvDEV/UI/Fields/Text Field")]
     public class TextField : Field<string>
     {
         [Header("Links")]

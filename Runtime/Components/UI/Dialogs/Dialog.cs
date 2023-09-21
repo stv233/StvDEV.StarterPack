@@ -22,7 +22,7 @@ namespace StvDEV.Components.UI.Dialogs
     /// Dialog basic class.
     /// </summary>
     /// <typeparam name="T">Dialog singleton.</typeparam>
-    public class Dialog<T> : MonoBehaviourSingleton<T> where T : Dialog<T>
+    public abstract class Dialog<T> : MonoBehaviourSingleton<T> where T : Dialog<T>
     {
         private Action<DialogResult> _callback;
 

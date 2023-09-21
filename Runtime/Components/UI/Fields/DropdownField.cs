@@ -8,6 +8,7 @@ namespace StvDEV.Components.UI.Fields
     /// <summary>
     /// String field with dropdown.
     /// </summary>
+    [AddComponentMenu("StvDEV/UI/Fields/Dropdown Field")]
     public class DropdownField : Field<string>
     {
         [Header("Dropdown")]

@@ -8,6 +8,7 @@ namespace StvDEV.Components.UI.Fields
     /// <summary>
     /// Key-Value pair string field.
     /// </summary>
+    [AddComponentMenu("StvDEV/UI/Fields/KeyValue Field")]
     public class KeyValueField : Field<string>
     {
         [Header("Key")]

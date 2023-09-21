@@ -9,6 +9,7 @@ namespace StvDEV.Components.UI.Dialogs
     /// <summary>
     /// Gloabal message box.
     /// </summary>
+    [AddComponentMenu("StvDEV/UI/Dialogs/Message Box")]
     public class MessageBox : Dialog<MessageBox>
     {
         /// <summary>
