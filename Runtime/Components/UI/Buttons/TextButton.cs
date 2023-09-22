@@ -15,18 +15,7 @@ namespace StvDEV.Components.UI.Buttons
 
         protected override void Awake()
         {
-            if (!_text)
-            {
-                _text = GetComponentInChildren<TMP_Text>();
-                if (_text == null)
-                {
-                    _text = GetComponent<TMP_Text>();
-                    if (_text == null)
-                    {
-                        _text = gameObject.AddComponent<TMP_Text>();
-                    }
-                }
-            }
+            InitializeText();
         }
 
         /// <summary>
@@ -37,9 +26,25 @@ namespace StvDEV.Components.UI.Buttons
             get => _text ? _text.text : string.Empty;
             set
             {
-                if (_text)
+                if (!_text)
                 {
-                    _text.text = value;
+                    InitializeText();
+                }
+                _text.text = value;
+            }
+        }
+        private void InitializeText()
+        {
+            if (!_text)
+            {
+                _text = GetComponentInChildren<TMP_Text>();
+                if (_text == null)
+                {
+                    _text = GetComponent<TMP_Text>();
+                    if (_text == null)
+                    {
+                        _text = gameObject.AddComponent<TMP_Text>();
+                    }
                 }
             }
         }
