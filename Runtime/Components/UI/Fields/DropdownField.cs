@@ -35,6 +35,7 @@ namespace StvDEV.Components.UI.Fields
                     AddOption(value);
                     _dropdown.value = _dropdown.options.Count - 2;
                 }
+                _dropdown.RefreshShownValue();
             }
         }
 
@@ -79,6 +80,7 @@ namespace StvDEV.Components.UI.Fields
         public virtual void AddOption(string option)
         {
             _dropdown.options.Add(new TMP_Dropdown.OptionData(option));
+            _dropdown.RefreshShownValue();
         }
 
         /// <summary>
