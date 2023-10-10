@@ -58,7 +58,7 @@ namespace StvDEV.Components.UI.Fields
             set => _dropdown.interactable = value;
         }
 
-        private void Awake()
+        protected void Awake()
         {
             _dropdown.onValueChanged.AddListener(value =>
             {
@@ -70,10 +70,6 @@ namespace StvDEV.Components.UI.Fields
                 ValueChanged?.Invoke(Value);
             });
 
-            if (_dropdown.options.Count > 0 && _dropdown.options[_dropdown.options.Count - 1].text != string.Empty)
-            {
-                _dropdown.options.Add(new TMP_Dropdown.OptionData(string.Empty));
-            }
         }
 
         /// <summary>

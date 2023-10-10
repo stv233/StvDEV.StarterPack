@@ -1,6 +1,6 @@
 {
-    "name": "StvDEV.UI",
-    "rootNamespace": "StvDEV.UI",
+    "name": "StvDEV.Components.UI",
+    "rootNamespace": "StvDEV.Components.UI",
     "references": [
         "GUID:e6419bcc911656c41abb8b43e313b57b",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
