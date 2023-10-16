@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Brainy.ControlDevice.SO
+namespace StvDEV.TextMeshPro.Validators
 {
     /// <summary>
     /// TextMeshPro input field Phone Number validator.
