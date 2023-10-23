@@ -9,39 +9,40 @@ using UnityEngine;
 namespace StvDEV.Components.Localization
 {
     /// <summary>
+    /// Text localization variant.
+    /// </summary>
+    [Serializable]
+    public struct TextLocalizationData : ILocalizationData
+    {
+        [Header("Language")]
+        [Tooltip("Language identifier.")]
+        [SerializeField] private string _language;
+
+        [Header("Content")]
+        [Multiline(3), Tooltip("Localized text.")]
+        [SerializeField] private string _text;
+
+        /// <summary>
+        /// Language identifier.
+        /// </summary>
+        public string Language => _language;
+
+        /// <summary>
+        /// Localized text.
+        /// </summary>
+        public string Text => _text;
+    }
+
+    /// <summary>
     /// Component to localize text.
     /// </summary>
     [RequireComponent(typeof(TMP_Text)), AddComponentMenu("StvDEV/Localization/Localized Text")]
     public class LocalizedText : LocalizedComponent
     {
-        /// <summary>
-        /// Text localization variant.
-        /// </summary>
-        [Serializable]
-        private struct Localization : ILocalizationData
-        {
-            [Header("Language")]
-            [Tooltip("Language identifier.")]
-            [SerializeField] private string _language;
-
-            [Header("Content")]
-            [Multiline(3), Tooltip("Localized text.")]
-            [SerializeField] private string _text;
-
-            /// <summary>
-            /// Language identifier.
-            /// </summary>
-            public string Language => _language;
-        
-            /// <summary>
-            /// Localized text.
-            /// </summary>
-            public string Text => _text;
-        }
 
         [Header("Localization")]
         [Tooltip("Localized text variants.")]
-        [SerializeField] private List<Localization> _localizations;
+        [SerializeField] private List<TextLocalizationData> _localizations;
 
         private void Start()
         {

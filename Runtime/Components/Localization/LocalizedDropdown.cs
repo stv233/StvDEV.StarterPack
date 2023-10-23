@@ -8,39 +8,39 @@ using UnityEngine;
 namespace StvDEV.Components.Localization
 {
     /// <summary>
+    /// Dropdown localization variant.
+    /// </summary>
+    [Serializable]
+    public struct DropdownLocalizationData : ILocalizationData
+    {
+        [Header("Language")]
+        [Tooltip("Language identifier.")]
+        [SerializeField] private string _language;
+
+        [Header("Content")]
+        [Tooltip("Localized options.")]
+        [SerializeField] private List<string> _options;
+
+        /// <summary>
+        /// Language identifier.
+        /// </summary>
+        public string Language => _language;
+
+        /// <summary>
+        /// Localized options.
+        /// </summary>
+        public List<string> Options => _options;
+    }
+
+    /// <summary>
     /// Component to localize dropdown.
     /// </summary>
     [RequireComponent(typeof(TMP_Dropdown)), AddComponentMenu("StvDEV/Localization/Localized Dropdown")]
     public class LocalizedDropdown : LocalizedComponent
     {
-        /// <summary>
-        /// Dropdown localization variant.
-        /// </summary>
-        [Serializable]
-        private struct Localization : ILocalizationData
-        {
-            [Header("Language")]
-            [Tooltip("Language identifier.")]
-            [SerializeField] private string _language;
-
-            [Header("Content")]
-            [Tooltip("Localized options.")]
-            [SerializeField] private List<string> _options;
-
-            /// <summary>
-            /// Language identifier.
-            /// </summary>
-            public string Language => _language;
-
-            /// <summary>
-            /// Localized options.
-            /// </summary>
-            public List<string> Options => _options;
-        }
-
         [Header("Localization")]
         [Tooltip("Localized text variants.")]
-        [SerializeField] private List<Localization> _localizations;
+        [SerializeField] private List<DropdownLocalizationData> _localizations;
 
         private void Start()
         {
