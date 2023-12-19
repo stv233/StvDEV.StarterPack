@@ -43,6 +43,8 @@ namespace StvDEV.Components.UI.Fields
             set => _inputField.readOnly = value; 
         }
 
+        public override bool IsFocused => _inputField.isFocused;
+
         private void Awake()
         {
             _inputField.onValueChanged.AddListener(value =>

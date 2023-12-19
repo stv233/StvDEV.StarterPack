@@ -83,6 +83,8 @@ namespace StvDEV.Components.UI.Fields
             }
         }
 
+        public override bool IsFocused => _keyInput.isFocused || _valueInput.isFocused;
+
         /// <summary>
         /// On field key changed.
         /// </summary>

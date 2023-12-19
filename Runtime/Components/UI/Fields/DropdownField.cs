@@ -59,6 +59,8 @@ namespace StvDEV.Components.UI.Fields
             set => _dropdown.interactable = value;
         }
 
+        public override bool IsFocused => _dropdown.IsExpanded;
+
         protected void Awake()
         {
             _dropdown.onValueChanged.AddListener(value =>

@@ -41,6 +41,11 @@ namespace StvDEV.Components.UI.Fields
         public abstract bool ReadOnly { get; set; }
 
         /// <summary>
+        /// Gets that field is focused now.
+        /// </summary>
+        public abstract bool IsFocused { get; }
+
+        /// <summary>
         /// On field value changed.
         /// </summary>
         public UnityEvent<T> ValueChanged => _valueChanged;

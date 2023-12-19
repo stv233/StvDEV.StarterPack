@@ -24,6 +24,8 @@ namespace StvDEV.Components.UI.Fields
             set => _toggle.interactable = value;
         }
 
+        public override bool IsFocused => false;
+
         private void Awake()
         {
             _toggle.onValueChanged.AddListener(value =>
