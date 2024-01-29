@@ -8,9 +8,11 @@ namespace StvDEV.Components.UI.Buttons
     /// Button with customizable text.
     /// </summary>
     [AddComponentMenu("StvDEV/UI/Buttons/Text Button")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/UI/Buttons/TextButton/index.html")]
     public class TextButton : Button
     {
         [Header("Settings")]
+        [Tooltip("Button text.")]
         [SerializeField] private TMP_Text _text;
 
         protected override void Awake()

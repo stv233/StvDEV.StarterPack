@@ -2,12 +2,15 @@ using StvDEV.Patterns;
 using System;
 using System.Collections.Concurrent;
 using System.Threading;
+using UnityEngine;
 
 namespace StvDEV.Components.Threads
 {
     /// <summary>
     /// Component for control & communicate with Unity main thread.
     /// </summary>
+    [AddComponentMenu("StvDEV/Threads/Thread Manager")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/Threads/ThreadManager/index.html")]
     public class ThreadManager : MonoBehaviourSingleton<ThreadManager>
     {
         private ConcurrentQueue<Action> _actions = new ConcurrentQueue<Action>();

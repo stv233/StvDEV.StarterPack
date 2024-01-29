@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 namespace StvDEV.Components.UI.Dialogs
 {
-
     /// <summary>
     /// Gloabal message box.
     /// </summary>
     [AddComponentMenu("StvDEV/UI/Dialogs/Message Box")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/UI/Dialogs/MessageBox/index.html")]
     public class MessageBox : Dialog<MessageBox>
     {
         /// <summary>
@@ -23,17 +23,22 @@ namespace StvDEV.Components.UI.Dialogs
         }
 
         [Header("Text")]
+        [Tooltip("Dialog text component.")]
         [SerializeField] private TMP_Text _text;
         
         [Header("Buttons")]
         [Header("Ok")]
+        [Tooltip("Dialog OK button.")]
         [SerializeField] private Button _ok;
 
         [Header("Yes/No")]
+        [Tooltip("Dialog YES button.")]
         [SerializeField] private Button _yes;
+        [Tooltip("Dialog NO button.")]
         [SerializeField] private Button _no;
 
         [Header("Cancel")]
+        [Tooltip("Dialog CANCEL button.")]
         [SerializeField] private Button _cancel;
 
         /// <summary>

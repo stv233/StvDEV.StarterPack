@@ -1,7 +1,6 @@
 using StvDEV.Extensions;
 using StvDEV.Inspector;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,6 +12,7 @@ namespace StvDEV.Components
     /// Component to handle command line arguments.
     /// </summary>
     [AddComponentMenu("StvDEV/Basic/Arguments Handler")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/ArgumentsHandler/index.html")]
     public class ArgumentsHandler : MonoBehaviour
     {
         /// <summary>

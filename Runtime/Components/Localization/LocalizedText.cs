@@ -1,6 +1,4 @@
-using StvDEV.Types;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -36,7 +34,9 @@ namespace StvDEV.Components.Localization
     /// <summary>
     /// Component to localize text.
     /// </summary>
-    [RequireComponent(typeof(TMP_Text)), AddComponentMenu("StvDEV/Localization/Localized Text")]
+    [RequireComponent(typeof(TMP_Text))]
+    [AddComponentMenu("StvDEV/Localization/Localized Text")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/Localization/LocalizedText/index.html")]
     public class LocalizedText : LocalizedComponent
     {
 

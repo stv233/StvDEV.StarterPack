@@ -13,12 +13,15 @@ namespace StvDEV.Components.UI.Fields
     public abstract class Field<T> : MonoBehaviour
     {
         [Header("Label")]
+        [Tooltip("Field label text.")]
         [SerializeField] protected TMP_Text _label;
 
         [Header("Tip")]
+        [Tooltip("Field tip text.")]
         [SerializeField] private TMP_Text _tip;
 
         [Header("Events")]
+        [Tooltip("On field value changed.")]
         [SerializeField] private UnityEvent<T> _valueChanged;
 
         /// <summary>

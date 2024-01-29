@@ -1,6 +1,6 @@
 {
   "name": "com.stvdev.starterpack",
-  "version": "2.12.5",
+  "version": "2.12.6",
   "displayName": "StvDEV Basic Scripts Package",
   "description": "A set of basic scripts and components for rapid prototyping and designing Unity projects.",
   "documentationUrl": "https://docs.stvdev.pro/StvDEV/index.html",
@@ -8,15 +8,18 @@
   "changelogUrl": "https://github.com/stv233/StarterPack/commits/master",
   "license": "MIT",
   "unity": "2021.3",
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  },
   "keywords": [
     "starterpack",
     "pack",
     "start",
     "basic",
     "scripts",
-	"package",
-	"integration",
-	"start"
+    "package",
+    "integration",
+    "start"
   ],
   "author": {
     "name": "StvDEV.PRO",

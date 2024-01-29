@@ -1,6 +1,4 @@
 using StvDEV.Inspector;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,6 +8,7 @@ namespace StvDEV.Components
     /// Basic trigger component.
     /// </summary>
     [AddComponentMenu("StvDEV/Basic/Trigger")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/Trigger/index.html")]
     public class Trigger : MonoBehaviour
     {
         [Header("Filter")]

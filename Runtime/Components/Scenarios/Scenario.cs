@@ -10,6 +10,7 @@ namespace StvDEV.Components.Scenarios
     /// Events Scenario Component.
     /// </summary>
     [AddComponentMenu("StvDEV/Scenarios/Scenario")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/Scenarios/Scenario/index.html")]
     public class Scenario : MonoBehaviour
     {
         [Serializable]

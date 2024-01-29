@@ -35,7 +35,9 @@ namespace StvDEV.Components.Localization
     /// <summary>
     /// Component to localize dropdown.
     /// </summary>
-    [RequireComponent(typeof(TMP_Dropdown)), AddComponentMenu("StvDEV/Localization/Localized Dropdown")]
+    [RequireComponent(typeof(TMP_Dropdown))]
+    [AddComponentMenu("StvDEV/Localization/Localized Dropdown")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/Localization/LocalizedDropdown/index.html")]
     public class LocalizedDropdown : LocalizedComponent
     {
         [Header("Localization")]

@@ -1,12 +1,10 @@
 using StvDEV.Components.Localization;
-using StvDEV.Types;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 namespace StvDEV.Components.Scenarios
 {
@@ -14,6 +12,7 @@ namespace StvDEV.Components.Scenarios
     /// Character Responses Component.
     /// </summary>
     [AddComponentMenu("StvDEV/Scenarios/Character Responses")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/Scenarios/CharacterResponses/index.html")]
     public class CharacterResponses : MonoBehaviour
     {
         /// <summary>

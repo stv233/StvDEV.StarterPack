@@ -9,10 +9,13 @@ namespace StvDEV.Components.UI
     /// UI Menu basic component.
     /// </summary>
     [MovedFrom(true, "StvDEV.StarterPack", "StvDEV.StarterPack", "GUIMenu")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/UI/UIMenu/index.html")]
     public abstract class UIMenu : MonoBehaviour 
     {
         [Header("Events")]
+        [Tooltip("Defines the actions that occur when the window is opened.")]
         [SerializeField] private UnityEvent _opened;
+        [Tooltip("Defines the actions that occur when the window is closed.")]
         [SerializeField] private UnityEvent _closed;
 
         /// <summary>

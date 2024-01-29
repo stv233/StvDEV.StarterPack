@@ -7,10 +7,13 @@ namespace StvDEV.Components.UI.Fields
     /// Text field.
     /// </summary>
     [AddComponentMenu("StvDEV/UI/Fields/Text Field")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/UI/Fields/TextField/index.html")]
     public class TextField : Field<string>
     {
         [Header("Links")]
+        [Tooltip("Value input field component.")]
         [SerializeField] private TMP_InputField _inputField;
+        [Tooltip("Value placeholder.")]
         [SerializeField] private TMP_Text _placeHolder;
 
         public override string Value

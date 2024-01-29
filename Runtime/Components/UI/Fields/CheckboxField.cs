@@ -7,9 +7,11 @@ namespace StvDEV.Components.UI.Fields
     /// Field with checkbox.
     /// </summary>
     [AddComponentMenu("StvDEV/UI/Fields/Chackbox Field")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/UI/Fields/CheckboxField/index.html")]
     public class CheckboxField : Field<bool>
     {
         [Header("Checkbox")]
+        [Tooltip("Field toggle component.")]
         [SerializeField] private Toggle _toggle;
 
         public override bool Value

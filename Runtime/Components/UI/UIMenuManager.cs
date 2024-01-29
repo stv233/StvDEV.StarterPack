@@ -11,6 +11,7 @@ namespace StvDEV.Components.UI
     /// </summary>
     [MovedFrom(true, "StvDEV.StarterPack", "StvDEV.StarterPack", "GUIManager")]
     [AddComponentMenu("StvDEV/UI/UI Menu Manager")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/UI/UIMenuManager/index.html")]
     public class UIMenuManager : MonoBehaviourSingleton<UIMenuManager>
     {
         private readonly Dictionary<string, UIMenu> _menus = new Dictionary<string, UIMenu>();
@@ -143,6 +144,15 @@ namespace StvDEV.Components.UI
         public static bool MenuExist<T>() where T : UIMenu
         {
             return TryGetMenu(out T menu);
+        }
+
+        /// <summary>
+        /// Gets all existing menus.
+        /// </summary>
+        /// <returns>Gets list of all existing menus</returns>
+        public static List<UIMenu> GetExistingMenus()
+        {
+            return Instance._menus.Values.ToList();
         }
 
         /// <summary>

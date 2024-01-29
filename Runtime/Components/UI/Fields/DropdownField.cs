@@ -9,9 +9,11 @@ namespace StvDEV.Components.UI.Fields
     /// String field with dropdown.
     /// </summary>
     [AddComponentMenu("StvDEV/UI/Fields/Dropdown Field")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/UI/Fields/DropdownField/index.html")]
     public class DropdownField : Field<string>
     {
         [Header("Dropdown")]
+        [Tooltip("Field dropdown component.")]
         [SerializeField] protected TMP_Dropdown _dropdown;
 
         /// <summary>

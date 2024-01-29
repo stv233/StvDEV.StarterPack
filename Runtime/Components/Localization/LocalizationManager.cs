@@ -23,6 +23,7 @@ namespace StvDEV.Components.Localization
     /// Localization management component.
     /// </summary>
     [AddComponentMenu("StvDEV/Localization/Localization Manager")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/Localization/LocalizationManager/index.html")]
     public class LocalizationManager : MonoBehaviourSingleton<LocalizationManager>
     {
         private static string _language = "ru-RU";

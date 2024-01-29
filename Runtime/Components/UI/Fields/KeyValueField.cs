@@ -9,17 +9,23 @@ namespace StvDEV.Components.UI.Fields
     /// Key-Value pair string field.
     /// </summary>
     [AddComponentMenu("StvDEV/UI/Fields/KeyValue Field")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/UI/Fields/KeyValueField/index.html")]
     public class KeyValueField : Field<string>
     {
         [Header("Key")]
+        [Tooltip("Key input field component.")]
         [SerializeField] private TMP_InputField _keyInput;
+        [Tooltip("Key placeholder.")]
         [SerializeField] private TMP_Text _keyPlaceholder;
 
         [Header("Value")]
+        [Tooltip("Value input field component.")]
         [SerializeField] private TMP_InputField _valueInput;
+        [Tooltip("Value placeholder")]
         [SerializeField] private TMP_Text _valuePlaceholder;
 
         [Header("Events")]
+        [Tooltip("On field key changed.")]
         [SerializeField] private UnityEvent<string> _keyChanged;
 
         /// <summary>
