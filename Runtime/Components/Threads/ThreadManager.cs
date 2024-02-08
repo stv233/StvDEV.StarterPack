@@ -11,6 +11,7 @@ namespace StvDEV.Components.Threads
     /// </summary>
     [AddComponentMenu("StvDEV/Threads/Thread Manager")]
     [HelpURL("https://docs.stvdev.pro/StvDEV/Components/Threads/ThreadManager/index.html")]
+    [DefaultExecutionOrder(-16000)]
     public class ThreadManager : MonoBehaviourSingleton<ThreadManager>
     {
         private ConcurrentQueue<Action> _actions = new ConcurrentQueue<Action>();
