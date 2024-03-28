@@ -33,7 +33,7 @@ namespace StvDEV.ProjectBrowser.Folders
             {
                 foreach(string folder in icon.Folders)
                 {
-                    _iconsCache.Add(folder, icon.Icon);
+                    _iconsCache.TryAdd(folder, icon.Icon);
                 }
             }
 
