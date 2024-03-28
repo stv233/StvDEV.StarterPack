@@ -25,7 +25,7 @@ namespace StvDEV.ProjectBrowser.Folders
             if (string.IsNullOrEmpty(path) 
                 || Event.current.type != EventType.Repaint 
                 || !File.GetAttributes(path).HasFlag(FileAttributes.Directory) 
-                || !icons.ContainsKey(path))
+                || !icons.ContainsKey(guid))
             {
                 return;
             }
@@ -45,7 +45,7 @@ namespace StvDEV.ProjectBrowser.Folders
                 imageRect = new Rect(rect.x + 2, rect.y - 1, rect.height + 2, rect.height + 2);
             }
 
-            Texture texture = IconsStorage.Folders[path];
+            Texture texture = IconsStorage.Folders[guid];
             if (!texture)
             {
                 return;

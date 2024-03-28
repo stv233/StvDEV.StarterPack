@@ -14,121 +14,121 @@ namespace StvDEV.ProjectBrowser.Folders
         [MenuItem(PARENT_MENU + "/Default")]
         private static void MarkAsDefault()
         {
-            RemoveIconFromFolder(AssetDatabase.GetAssetPath(Selection.activeObject));
+            RemoveIconFromFolder(Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU  + "/Default", true)]
         private static bool MarkAsDefaultValidator()
         {
-            return ObjectIsFolder(Selection.activeObject) && FolderHasIcon(AssetDatabase.GetAssetPath(Selection.activeObject));
+            return Selection.assetGUIDs.Length == 1 && ObjectIsFolder(Selection.activeObject) && FolderHasIcon(Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Animations")]
         private static void MarkAsAnimations()
         {
-            AddIconToFolder("Animations", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Animations", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Audio")]
         private static void MarkAsAudio()
         {
-            AddIconToFolder("Audio", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Audio", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Editor")]
         private static void MarkAsEditor()
         {
-            AddIconToFolder("Editor", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Editor", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Fonts")]
         private static void MarkAsFonts()
         {
-            AddIconToFolder("Fonts", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Fonts", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Home")]
         private static void MarkAsHome()
         {
-            AddIconToFolder("Home", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Home", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Materials")]
         private static void MarkAsMaterials()
         {
-            AddIconToFolder("Materials", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Materials", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Models")]
         private static void MarkAsModels()
         {
-            AddIconToFolder("Models", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Models", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Plugins")]
         private static void MarkAsPlugins()
         {
-            AddIconToFolder("Plugins", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Plugins", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Prefabs")]
         private static void MarkAsPrefabs()
         {
-            AddIconToFolder("Prefabs", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Prefabs", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Presets")]
         private static void MarkAsPresets()
         {
-            AddIconToFolder("Presets", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Presets", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Resources")]
         private static void MarkAsResources()
         {
-            AddIconToFolder("Resources", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Resources", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Runtime")]
         private static void MarkAsRuntime()
         {
-            AddIconToFolder("Runtime", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Runtime", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Scenes")]
         private static void MarkAsScenes()
         {
-            AddIconToFolder("Scenes", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Scenes", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Scripts")]
         private static void MarkAsScripts()
         {
-            AddIconToFolder("Scripts", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Scripts", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Settings")]
         private static void MarkAsSettings()
         {
-            AddIconToFolder("Settings", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Settings", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Shaders")]
         private static void MarkAsShaders()
         {
-            AddIconToFolder("Shaders", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Shaders", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Sprites")]
         private static void MarkAsSprites()
         {
-            AddIconToFolder("Sprites", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Sprites", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Textures")]
         private static void MarkAsTextures()
         {
-            AddIconToFolder("Textures", AssetDatabase.GetAssetPath(Selection.activeObject));
+            AddIconToFolder("Textures", Selection.assetGUIDs[0]);
         }
 
         [MenuItem(PARENT_MENU + "/Animations", true)]
@@ -151,7 +151,7 @@ namespace StvDEV.ProjectBrowser.Folders
         [MenuItem(PARENT_MENU + "/Textures", true)]
         private static bool MarkAsValidator()
         {
-            return ObjectIsFolder(Selection.activeObject);
+            return ObjectIsFolder(Selection.activeObject) && Selection.assetGUIDs.Length == 1;
         }
 
         private static bool ObjectIsFolder(Object @object)
