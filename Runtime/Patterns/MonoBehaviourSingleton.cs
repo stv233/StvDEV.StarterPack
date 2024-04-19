@@ -43,7 +43,7 @@ namespace StvDEV.Patterns
         /// <summary>
         /// Awakes this instance
         /// </summary>
-        private void Awake()
+        protected void Awake()
         {
             if (!_instance)
             {
