@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using System;
 
 namespace StvDEV.Inspector
 {
@@ -59,7 +60,7 @@ namespace StvDEV.Inspector
         /// <returns>Field value</returns>
         private bool GetConditionalHideAttributeResult(ShowIfAttribute showIf, SerializedProperty property)
         {
-            bool enabled = true;
+            bool enabled;
 
             if (showIf.ByValue)
             {
@@ -68,18 +69,30 @@ namespace StvDEV.Inspector
             else
             {
                 string fieldName = showIf.ConditionalSourceField;
-                bool inverse = fieldName.StartsWith("!");
-                if (inverse)
-                {
-                    fieldName = fieldName.Substring(1);
-                }
+                bool inverse = showIf.Inverse;
                 string propertyPath = property.propertyPath;
                 string conditionPath = propertyPath.Replace(property.name, fieldName);
                 SerializedProperty sourcePropertyValue = property.serializedObject.FindProperty(conditionPath);
 
                 if (sourcePropertyValue != null)
                 {
-                    enabled = sourcePropertyValue.boolValue;
+                    switch (sourcePropertyValue.propertyType)
+                    {
+                        case SerializedPropertyType.Boolean:
+                            enabled = sourcePropertyValue.boolValue;
+                            break;
+                        case SerializedPropertyType.Integer:
+                            enabled = sourcePropertyValue.intValue != 0;
+                            break;
+                        case SerializedPropertyType.Float:
+                            enabled = sourcePropertyValue.floatValue != 0;
+                            break;
+                        case SerializedPropertyType.ObjectReference:
+                            enabled = sourcePropertyValue.objectReferenceValue;
+                            break;
+                        default:
+                            throw new NotSupportedException($"ShowIf attribute does not support the type of this field type: {sourcePropertyValue.propertyType}");
+                    }
 
                     if (inverse)
                     {
@@ -88,7 +101,7 @@ namespace StvDEV.Inspector
                 }
                 else
                 {
-                    Debug.LogWarning("Attempting to use a ConditionalHideAttribute but no matching SourcePropertyValue found in object: " + showIf.ConditionalSourceField);
+                    throw new ArgumentException("Attempting to use a ShowIf but no matching field found in object: " + showIf.ConditionalSourceField);
                 }
             }
 

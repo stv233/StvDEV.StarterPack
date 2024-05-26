@@ -29,20 +29,29 @@ namespace StvDEV.Inspector
         private string _conditionalSourceField = "";
         private bool _hideInInspector = false;
         private bool _byBool = false;
+        private bool _inverse = false;
         private bool _value = false; 
 
         /// <summary>
         /// Gets the value of the conditional source field.
         /// </summary>
         public string ConditionalSourceField => _conditionalSourceField;
+
         /// <summary>
         /// Gets the value of the hide in inspector.
         /// </summary>
         public bool HideInInspector => _hideInInspector;
+
         /// <summary>
         /// Gets the value of the by value.
         /// </summary>
-        public bool ByValue => _byBool;  
+        public bool ByValue => _byBool;
+
+        /// <summary>
+        /// Inverse value in check.
+        /// </summary>
+        public bool Inverse => _inverse;
+
         /// <summary>
         /// Gets the value of the value.
         /// </summary>
@@ -52,16 +61,32 @@ namespace StvDEV.Inspector
         /// Hides the display of a field in the inspector by the value of a field of type bool.
         /// </summary>
         /// <param name="conditionalSourceField">Name of the field containing the condition</param>
-        public ShowIfAttribute(string conditionalSourceField) : this(conditionalSourceField, HideType.Hide) { }
+        public ShowIfAttribute(string conditionalSourceField) : this(conditionalSourceField, false, HideType.Hide) { }
+
+        /// <summary>
+        /// Hides the display of a field in the inspector by the value of a field of type bool.
+        /// </summary>
+        /// <param name="conditionalSourceField">Name of the field containing the condition</param>
+        /// <param name="inverseFieldValue">Inverse field value on check</param>
+        public ShowIfAttribute(string conditionalSourceField, bool inverseFieldValue) : this(conditionalSourceField, inverseFieldValue, HideType.Hide) { }
+
+        /// <summary>
+        /// Hides the display of a field in the inspector by the value of a field of type bool.
+        /// </summary>
+        /// <param name="conditionalSourceField">Name of the field containing the condition</param>
+        /// <param name="hideType">Hide type</param>
+        public ShowIfAttribute(string conditionalSourceField, HideType hideType) : this(conditionalSourceField, false, hideType) { }
 
         /// <summary>
         /// Hides or disables the display of a field in the inspector by the value of a field of type bool.
         /// </summary>
         /// <param name="conditionalSourceField">Name of the field containing the condition</param>
+        /// <param name="inverseFieldValue">Inverse field value on check</param>
         /// <param name="hideType">Hide type</param>
-        public ShowIfAttribute(string conditionalSourceField, HideType hideType)
+        public ShowIfAttribute(string conditionalSourceField, bool inverseFieldValue, HideType hideType)
         {
             _conditionalSourceField = conditionalSourceField;
+            _inverse = inverseFieldValue;
             _hideInInspector = hideType == HideType.Hide;
         }
 

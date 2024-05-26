@@ -75,7 +75,7 @@ namespace StvDEV.Components
         [Header("Debug (Editor Only)")]
         [CaptionedBool("Yes", "No"), Tooltip("Simulate command line arguments input.")]
         [SerializeField] private bool _simulateArguments;
-        [ShowIf("_simulateArguments"), Tooltip("Simulated command line arguments.")]
+        [ShowIf(nameof(_simulateArguments)), Tooltip("Simulated command line arguments.")]
         [SerializeField] private string _simulatedArguments;
 #endif
 

@@ -14,7 +14,7 @@ namespace StvDEV.Components
         [Header("Filter")]
         [CaptionedBool("On", "Off"), Tooltip("Filter objects by tag.")]
         [SerializeField] private bool _filterByTag;
-        [ShowIf("_filterByTag"), Tooltip("Object tag.")]
+        [ShowIf(nameof(_filterByTag)), Tooltip("Object tag.")]
         [SerializeField] private string _tag;
 
         [Header("Evenetns")]
