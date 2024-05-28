@@ -1,7 +1,9 @@
 {
     "name": "StvDEV.Patterns",
     "rootNamespace": "StvDEV.Patterns",
-    "references": [],
+    "references": [
+        "GUID:9a2f18c2c161a32469281b7f51049ffb"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
