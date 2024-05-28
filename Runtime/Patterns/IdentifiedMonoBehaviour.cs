@@ -13,7 +13,7 @@ namespace StvDEV.Patterns
         [SerializeField] private string _id;
 
         /// <summary>
-        /// <see cref="MonoBehaviour"/> instance id.
+        /// Instance id.
         /// </summary>
         public string ID => _id;
 
