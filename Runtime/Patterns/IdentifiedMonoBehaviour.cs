@@ -31,6 +31,7 @@ namespace StvDEV.Patterns
         private void ResetId()
         {
             _id = Guid.NewGuid().ToString();
+            UnityEditor.EditorUtility.SetDirty(this);
         }
 
         [ContextMenu("Copy ID")]
