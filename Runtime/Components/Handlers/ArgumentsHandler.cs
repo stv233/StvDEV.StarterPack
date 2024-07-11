@@ -6,13 +6,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace StvDEV.Components
+namespace StvDEV.Components.Handlers
 {
     /// <summary>
     /// Component to handle command line arguments.
     /// </summary>
-    [AddComponentMenu("StvDEV/Basic/Arguments Handler")]
-    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/ArgumentsHandler/index.html")]
+    [AddComponentMenu("StvDEV/Basic/Handlers/Arguments Handler")]
+    [HelpURL("https://docs.stvdev.pro/StvDEV/Components/Handlers/ArgumentsHandler/index.html")]
     public class ArgumentsHandler : MonoBehaviour
     {
         /// <summary>
