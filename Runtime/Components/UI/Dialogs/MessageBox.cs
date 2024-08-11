@@ -93,6 +93,7 @@ namespace StvDEV.Components.UI.Dialogs
             _ok.gameObject.SetActive(false);
             _yes.gameObject.SetActive(false);
             _no.gameObject.SetActive(false);
+			_cancel.gameObject.SetActive(false);
         }
 
         /// <summary>
