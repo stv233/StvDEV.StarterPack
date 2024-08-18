@@ -26,7 +26,7 @@ namespace StvDEV.Components.Localization
     [HelpURL("https://docs.stvdev.pro/StvDEV/Components/Localization/LocalizationManager/index.html")]
     public class LocalizationManager : MonoBehaviourSingleton<LocalizationManager>
     {
-        private static string _language = "ru-RU";
+        private static string _language = "en-US";
         private static UnityEvent<string> _languageChanged = new UnityEvent<string>();
 
         /// <summary>
