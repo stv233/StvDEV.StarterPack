@@ -22,6 +22,16 @@ namespace StvDEV.Components.Localization
         [SerializeField] private List<string> _options;
 
         /// <summary>
+        /// Dropdown localization variant.
+        /// </summary>
+        /// <param name="language">Localization language</param>
+        public DropdownLocalizationData(string language)
+        {
+            _language = language;
+            _options = new List<string>();
+        }
+
+        /// <summary>
         /// Language identifier.
         /// </summary>
         public string Language => _language;

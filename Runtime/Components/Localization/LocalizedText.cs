@@ -21,6 +21,17 @@ namespace StvDEV.Components.Localization
         [SerializeField] private string _text;
 
         /// <summary>
+        /// Text localization variant.
+        /// </summary>
+        /// <param name="language">Localization language</param>
+        /// <param name="text">Localized text</param>
+        public TextLocalizationData(string language, string text)
+        {
+            _language = language;
+            _text = text;
+        }
+
+        /// <summary>
         /// Language identifier.
         /// </summary>
         public string Language => _language;
