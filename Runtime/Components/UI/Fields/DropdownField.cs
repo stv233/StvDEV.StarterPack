@@ -35,7 +35,7 @@ namespace StvDEV.Components.UI.Fields
                 else
                 {
                     AddOption(value);
-                    _dropdown.value = _dropdown.options.Count - 2;
+                    _dropdown.value = _dropdown.options.Count - 1;
                 }
                 _dropdown.RefreshShownValue();
             }
@@ -67,11 +67,6 @@ namespace StvDEV.Components.UI.Fields
         {
             _dropdown.onValueChanged.AddListener(value =>
             {
-                if (value == _dropdown.options.Count - 1)
-                {
-                    _dropdown.value = value - 1;
-                }
-
                 ValueChanged?.Invoke(Value);
             });
 

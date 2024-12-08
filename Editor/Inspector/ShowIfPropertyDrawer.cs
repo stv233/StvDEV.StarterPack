@@ -66,6 +66,10 @@ namespace StvDEV.Inspector
             {
                 enabled = showIf.Value;
             }
+            else if (showIf.ByFunc)
+            {
+                enabled = showIf.Func != null ? showIf.Func.Invoke() : true;
+            }
             else
             {
                 string fieldName = showIf.ConditionalSourceField;
