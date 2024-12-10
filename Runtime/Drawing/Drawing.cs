@@ -440,7 +440,7 @@ namespace StvDEV.Drawing
                         DrawPoint(pointX, pointY);
                         return;
                     case SectorType.Start:
-                        if (pointX > startPoint)
+                        if (pointX >= startPoint)
                         {
                             DrawPoint(pointX, pointY);
                         }
@@ -477,7 +477,7 @@ namespace StvDEV.Drawing
                         DrawPoint(pointX, pointY);
                         return;
                     case SectorType.Start:
-                        if (pointX < startPoint)
+                        if (pointX <= startPoint)
                         {
                             DrawPoint(pointX, pointY);
                         }
