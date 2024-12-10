@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Android.Types;
-using UnityEditor.Search;
 using UnityEngine;
 
 namespace StvDEV.Drawing
@@ -10,7 +7,7 @@ namespace StvDEV.Drawing
     /// <summary>
     /// Drawing class.
     /// </summary>
-    public static class Drawing 
+    public static class Drawing
     {
         /// <summary>
         /// Draws a pixel on the specified texture, limiting it to the specified dimensions at the specified coordinates.
@@ -40,7 +37,7 @@ namespace StvDEV.Drawing
         /// <param name="color">Color</param>
         public static void DrawPixel(this Texture2D texture, int x, int y, Color color)
         {
-            DrawPixel(texture, x, y, texture.width, texture.height, color);   
+            DrawPixel(texture, x, y, texture.width, texture.height, color);
         }
 
         /// <summary>
@@ -258,11 +255,11 @@ namespace StvDEV.Drawing
         /// </summary>
         /// <param name="texture">Texture</param>
         /// <param name="center">Circle center</param>
-        /// <param name="startAngle">Part start angle [0; 360]</param>
-        /// <param name="endAngle">Part end angle [0; 360]</param>
+        /// <param name="startAngle">Part start angle [0; infinity]</param>
+        /// <param name="endAngle">Part end angle [0; infinity]</param>
         /// <param name="radius">Circle radius</param>
         /// <param name="color">Color</param>
-        public static void DrawArc(this Texture2D texture, Vector2Int center, int radius, int startAngle, int endAngle,  Color color)
+        public static void DrawArc(this Texture2D texture, Vector2Int center, int radius, int startAngle, int endAngle, Color color)
             => DrawArc(texture, center.x, center.y, radius, startAngle, endAngle, color);
 
         /// <summary>
@@ -271,20 +268,20 @@ namespace StvDEV.Drawing
         /// <param name="texture">Texture</param>
         /// <param name="centerX">Circle center X</param>
         /// <param name="centerY">Circle center Y</param>
-        /// <param name="startAngle">Part start angle [0; 360]</param>
-        /// <param name="endAngle">Part end angle [0; 360]</param>
+        /// <param name="startAngle">Part start angle [0; infinity]</param>
+        /// <param name="endAngle">Part end angle [0; infinity]</param>
         /// <param name="radius">Circle radius</param>
         /// <param name="color">Color</param>
         public static void DrawArc(this Texture2D texture, int centerX, int centerY, int radius, int startAngle, int endAngle, Color color)
-            => DrawSectors(texture, centerX, centerY, radius, startAngle, endAngle,  color);
+            => DrawSectors(texture, centerX, centerY, radius, startAngle, endAngle, color);
 
         /// <summary>
         /// Fills in the part of the circle with the specified radius.
         /// </summary>
         /// <param name="texture">Texture</param>
         /// <param name="center">Circle center</param>
-        /// <param name="startAngle">Part start angle [0; 360]</param>
-        /// <param name="endAngle">Part end angle [0; 360]</param>
+        /// <param name="startAngle">Part start angle [0; infinity]</param>
+        /// <param name="endAngle">Part end angle [0; infinity]</param>
         /// <param name="radius">Circle radius</param>
         /// <param name="color">Color</param>
         public static void FillPie(this Texture2D texture, Vector2Int center, int radius, int startAngle, int endAngle, Color color)
@@ -296,8 +293,8 @@ namespace StvDEV.Drawing
         /// <param name="texture">Texture</param>
         /// <param name="centerX">Circle center X</param>
         /// <param name="centerY">Circle center Y</param>
-        /// <param name="startAngle">Part start angle [0; 360]</param>
-        /// <param name="endAngle">Part end angle [0; 360]</param>
+        /// <param name="startAngle">Part start angle [0; infinity]</param>
+        /// <param name="endAngle">Part end angle [0; infinity]</param>
         /// <param name="radius">Circle radius</param>
         /// <param name="color">Color</param>
         public static void FillPie(this Texture2D texture, int centerX, int centerY, int radius, int startAngle, int endAngle, Color color)
@@ -309,12 +306,13 @@ namespace StvDEV.Drawing
             Start,
             Draw,
             End,
-            StartAndEnd
+            StartAndEnd,
+            StartAndEndRound
         }
 
-        private const double RADIANTS_TO_DEGREE = 180 / Math.PI; 
-        
-        private static void DrawSectors(this Texture2D texture, int centerX, int centerY, int radius,  int startAngle, int endAngle,  Color color, bool filled = false)
+        private const double RADIANTS_TO_DEGREE = 180 / Math.PI;
+
+        private static void DrawSectors(this Texture2D texture, int centerX, int centerY, int radius, int startAngle, int endAngle, Color color, bool filled = false)
         {
             int width = texture.width;
             int height = texture.height;
@@ -331,13 +329,17 @@ namespace StvDEV.Drawing
                 arcSectors[i] = SectorType.NotDraw;
             }
 
+            bool round = false;
+
             if (startAngle < 0)
             {
+                Debug.LogWarning("When drawing parts of a circle with negative angles, problems may arise. If you want to create a part of the circle passing through point 0, it is recommended to use angles exceeding 360 degrees.");
                 startAngle = 360 + (startAngle % 360);
             }
 
             if (endAngle < 0)
             {
+                Debug.LogWarning("When drawing parts of a circle with negative angles, problems may arise. If you want to create a part of the circle passing through point 0, it is recommended to use angles exceeding 360 degrees.");
                 endAngle = 360 + (endAngle % 360);
             }
 
@@ -355,8 +357,6 @@ namespace StvDEV.Drawing
                     arcSectors[i] = SectorType.Draw;
                 }
 
-                bool round = false;
-                
                 if (endSector >= 8)
                 {
                     round = true;
@@ -377,6 +377,10 @@ namespace StvDEV.Drawing
                     arcSectors[startSector] = SectorType.Start;
                     arcSectors[endSector] = SectorType.End;
                 }
+                else if (startSector == endSector)
+                {
+                    arcSectors[startSector] = SectorType.StartAndEndRound;
+                }
 
             }
 
@@ -385,7 +389,7 @@ namespace StvDEV.Drawing
             int startPoint = (int)(centerX + radius * Math.Cos(startAngle / RADIANTS_TO_DEGREE));
             int endPoint = (int)(centerX + radius * Math.Cos(endAngle / RADIANTS_TO_DEGREE));
 
-            int radiusError = Math.Abs(2 * (1 - radius));
+            int radiusError = 2 * (1 - radius);
 
             while (y > x)
             {
@@ -405,7 +409,7 @@ namespace StvDEV.Drawing
                 }
                 else
                 {
-                    if ( x > radiusError)
+                    if (x > radiusError)
                     {
                         x++;
                         radiusError = radiusError + 2 * x + 1;
@@ -420,49 +424,47 @@ namespace StvDEV.Drawing
                 var sinRadius = radius * Math.Sin(45 / RADIANTS_TO_DEGREE);
 
                 DrawNegativeSectorPoint((int)(centerX + cosRadius), (int)(centerY + sinRadius), arcSectors[0], startPoint, endPoint);
-                DrawNegativeSectorPoint((int)(centerX - cosRadius), (int)(centerY + sinRadius) + 1, arcSectors[2], startPoint, endPoint);
-                DrawPositiveSectorPoint((int)(centerX - cosRadius), (int)(centerY - sinRadius), arcSectors[4], startPoint, endPoint);
-                DrawPositiveSectorPoint((int)(centerX + cosRadius) + 1, (int)(centerY - sinRadius), arcSectors[6], startPoint, endPoint);
+                DrawNegativeSectorPoint((int)(centerX - cosRadius) + 1, (int)(centerY + sinRadius) , arcSectors[2], startPoint, endPoint);
+                DrawPositiveSectorPoint((int)(centerX - cosRadius) + 1, (int)(centerY - sinRadius) + 1, arcSectors[4], startPoint, endPoint);
+                DrawPositiveSectorPoint((int)(centerX + cosRadius), (int)(centerY - sinRadius) + 1, arcSectors[6], startPoint, endPoint);
 
             }
 
             void DrawPositiveSectorPoint(int pointX, int pointY, SectorType sector, int startPoint, int endPoint)
             {
-                switch(sector)
+                switch (sector)
                 {
                     case SectorType.NotDraw:
                         return;
                     case SectorType.Draw:
-                        DrawPoint();
+                        DrawPoint(pointX, pointY);
                         return;
                     case SectorType.Start:
-                        if (pointX >= startPoint)
+                        if (pointX > startPoint)
                         {
-                            DrawPoint();
+                            DrawPoint(pointX, pointY);
                         }
                         return;
                     case SectorType.End:
-                        if (pointX <= endPoint)
+                        if (pointX < endPoint)
                         {
-                            DrawPoint();
+                            DrawPoint(pointX, pointY);
                         }
                         return;
                     case SectorType.StartAndEnd:
                         if (pointX >= startPoint && pointX <= endPoint)
                         {
-                            DrawPoint();
+                            DrawPoint(pointX, pointY);
+                        }
+                        return;
+                    case SectorType.StartAndEndRound:
+                        if (pointX >= startPoint || pointX <= endPoint)
+                        {
+                            DrawPoint(pointX, pointY);
                         }
                         return;
                 }
 
-                void DrawPoint()
-                {
-                    DrawPixel(texture, pointX, pointY, width, height, color);
-                    if (filled)
-                    {
-                        DrawLine(texture, centerX, centerY, pointX, pointY, color);
-                    }
-                }
             }
 
             void DrawNegativeSectorPoint(int pointX, int pointY, SectorType sector, int startPoint, int endPoint)
@@ -472,35 +474,42 @@ namespace StvDEV.Drawing
                     case SectorType.NotDraw:
                         return;
                     case SectorType.Draw:
-                        DrawPoint();
+                        DrawPoint(pointX, pointY);
                         return;
                     case SectorType.Start:
-                        if (pointX <= startPoint)
+                        if (pointX < startPoint)
                         {
-                            DrawPoint();
+                            DrawPoint(pointX, pointY);
                         }
                         return;
                     case SectorType.End:
-                        if (pointX >= endPoint)
+                        if (pointX > endPoint)
                         {
-                            DrawPoint();
+                            DrawPoint(pointX, pointY);
                         }
                         return;
                     case SectorType.StartAndEnd:
                         if (pointX <= startPoint && pointX >= endPoint)
                         {
-                            DrawPoint();
+                            DrawPoint(pointX, pointY);
+                        }
+                        return;
+                    case SectorType.StartAndEndRound:
+                        if (pointX <= startPoint || pointX >= endPoint)
+                        {
+                            DrawPoint(pointX, pointY);
                         }
                         return;
                 }
 
-                void DrawPoint()
+            }
+
+            void DrawPoint(int pointX, int pointY)
+            {
+                DrawPixel(texture, pointX, pointY, width, height, color);
+                if (filled)
                 {
-                    DrawPixel(texture, pointX, pointY, width, height, color);
-                    if (filled)
-                    {
-                        DrawLine(texture, centerX, centerY, pointX, pointY, color);
-                    }
+                    DrawLine(texture, centerX, centerY, pointX, pointY, color);
                 }
             }
 
@@ -569,7 +578,7 @@ namespace StvDEV.Drawing
                     }
                 }
 
-                if (x < width - 1 )
+                if (x < width - 1)
                 {
                     index = x + 1 + y * width;
                     if (image[index].ColorEquals(originalColor))
@@ -614,7 +623,7 @@ namespace StvDEV.Drawing
         {
             return height - y;
         }
-    
+
         private static bool ColorEquals(this Color32 color1, Color32 color2)
         {
             return color1.a == color2.a
