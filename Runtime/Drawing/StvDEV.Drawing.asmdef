@@ -1,0 +1,14 @@
+{
+    "name": "StvDEV.Drawing",
+    "rootNamespace": "StvDEV.Drawing",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
