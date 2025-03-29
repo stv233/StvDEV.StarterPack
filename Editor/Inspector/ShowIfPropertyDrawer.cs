@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEditor;
 using System;
+using UnityEngine.UIElements;
+using System.Reflection.Emit;
+using UnityEditor.UIElements;
 
 namespace StvDEV.Inspector
 {
@@ -10,8 +13,41 @@ namespace StvDEV.Inspector
     [CustomPropertyDrawer(typeof(ShowIfAttribute))]
     public class ShowIfPropertyDrawer : PropertyDrawer
     {
+
         /// <summary>
-        /// Ons the gui using the specified position
+        /// Draw gui using UIToolkit.
+        /// </summary>
+        /// <param name="property">Property</param>
+        /// <returns>Root element</returns>
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            VisualElement container = new VisualElement();
+            PropertyField field = new PropertyField(property);
+
+            container.Add(field);
+
+            field.RegisterCallback<ValidateCommandEvent>(_ =>
+            {
+                ShowIfAttribute hideIf = (ShowIfAttribute)attribute;
+                bool enabled = GetConditionalHideAttributeResult(hideIf, property);
+
+                field.SetEnabled(enabled);
+
+                if (!hideIf.HideInInspector || enabled)
+                {
+                    field.visible = true;
+                }
+                else
+                {
+                    field.visible = false;
+                }
+            });
+
+            return container;
+        }
+
+        /// <summary>
+        /// Ons the gui using the specified position.
         /// </summary>
         /// <param name="position">The position</param>
         /// <param name="property">The property</param>

@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 
 namespace StvDEV.Inspector
 {
@@ -9,6 +11,22 @@ namespace StvDEV.Inspector
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyPropertyDrawer : PropertyDrawer
     {
+        /// <summary>
+        /// Draw gui using UIToolkit.
+        /// </summary>
+        /// <param name="property">Property</param>
+        /// <returns>Root element</returns>
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            VisualElement container = new VisualElement();
+            PropertyField field = new PropertyField(property);
+            container.Add(field);
+
+            field.SetEnabled(false);
+
+            return container;
+        }
+
         /// <summary>
         /// Ons the gui using the specified position.
         /// </summary>

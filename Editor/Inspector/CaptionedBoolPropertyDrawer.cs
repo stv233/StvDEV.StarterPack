@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace StvDEV.Inspector
 {
@@ -11,6 +13,38 @@ namespace StvDEV.Inspector
     [CustomPropertyDrawer(typeof(CaptionedBoolAttribute))]
     public class CaptionedBoolPropertyDrawer : PropertyDrawer
     {
+        /// <summary>
+        /// Draw gui using UIToolkit.
+        /// </summary>
+        /// <param name="property">Property</param>
+        /// <returns>Root element</returns>
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            VisualElement container = new VisualElement();
+
+            if (property.propertyType == SerializedPropertyType.Boolean)
+            {
+                CaptionedBoolAttribute attributeObject = (CaptionedBoolAttribute)attribute;
+
+                PopupField<string> field = new PopupField<string>(property.displayName, new List<string> { attributeObject.False, attributeObject.True}, property.boolValue ? 1 : 0);
+                field.value = property.boolValue ? attributeObject.True : attributeObject.False;
+
+                field.RegisterCallback<ChangeEvent<string>>(x =>
+                {
+                    property.boolValue = x.newValue == attributeObject.True;
+                    property.serializedObject.ApplyModifiedProperties();
+                });
+
+                container.Add(field);
+            }
+            else
+            {
+                HelpBox box = new HelpBox("Incorrect type for the CaptionedBool attribute.", HelpBoxMessageType.Error);
+                container.Add(box);
+            }
+            return container;
+        }
+
         /// <summary>
         /// Ons the gui using the specified position
         /// </summary>
@@ -28,7 +62,7 @@ namespace StvDEV.Inspector
             }
             else
             {
-                EditorGUI.HelpBox(ctrlRect, "Incorrect type for the AnnotatedBool attribute.", MessageType.Error);
+                EditorGUI.HelpBox(ctrlRect, "Incorrect type for the CaptionedBool attribute.", MessageType.Error);
             }
         }
     }

@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace StvDEV.Inspector
 {
@@ -13,7 +16,37 @@ namespace StvDEV.Inspector
     public class EnumPropertyDrawer : PropertyDrawer
     {
         /// <summary>
-        /// Ons the gui using the specified position
+        /// Draw gui using UIToolkit.
+        /// </summary>
+        /// <param name="property">Property</param>
+        /// <returns>Root element</returns>
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            VisualElement container = new VisualElement();
+
+            EnumAttribute attributeObject = (EnumAttribute)attribute;
+
+            if (property.propertyType == SerializedPropertyType.Integer)
+            {
+                PopupField<string> field = new PopupField<string>(property.displayName, attributeObject.Captions.ToList(), 0);
+                field.RegisterCallback<ChangeEvent<string>>(x =>
+                {
+                    property.intValue = Array.IndexOf(attributeObject.Captions, x.newValue);
+                    property.serializedObject.ApplyModifiedProperties();
+                });
+
+                container.Add(field);
+            }
+            else
+            {
+                HelpBox box = new HelpBox("Incorrect type for the Enum attribute.", HelpBoxMessageType.Error);
+                container.Add(box);
+            }
+            return container;
+        }
+
+        /// <summary>
+        /// Ons the gui using the specified position.
         /// </summary>
         /// <param name="position">The position</param>
         /// <param name="property">The property</param>
@@ -28,7 +61,7 @@ namespace StvDEV.Inspector
             }
             else
             {
-                EditorGUI.HelpBox(ctrlRect, "Incorrect type for the AnnotatedBool attribute.", MessageType.Error);
+                EditorGUI.HelpBox(ctrlRect, "Incorrect type for the Enum attribute.", MessageType.Error);
             }
         }
     }
