@@ -35,11 +35,11 @@ namespace StvDEV.Inspector
 
                 if (!hideIf.HideInInspector || enabled)
                 {
-                    field.visible = true;
+                    field.style.display = DisplayStyle.Flex;
                 }
                 else
                 {
-                    field.visible = false;
+                    field.style.display = DisplayStyle.None;
                 }
             });
 
