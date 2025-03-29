@@ -28,6 +28,7 @@ namespace StvDEV.Inspector
 
                 PopupField<string> field = new PopupField<string>(property.displayName, new List<string> { attributeObject.False, attributeObject.True}, property.boolValue ? 1 : 0);
                 field.value = property.boolValue ? attributeObject.True : attributeObject.False;
+                field.AddToClassList("unity-base-field__aligned");
 
                 field.RegisterCallback<ChangeEvent<string>>(x =>
                 {

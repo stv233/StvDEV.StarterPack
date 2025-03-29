@@ -26,7 +26,7 @@ namespace StvDEV.Inspector
 
             container.Add(field);
 
-            field.RegisterCallback<ValidateCommandEvent>(_ =>
+            container.TrackSerializedObjectValue(property.serializedObject, _ =>
             {
                 ShowIfAttribute hideIf = (ShowIfAttribute)attribute;
                 bool enabled = GetConditionalHideAttributeResult(hideIf, property);

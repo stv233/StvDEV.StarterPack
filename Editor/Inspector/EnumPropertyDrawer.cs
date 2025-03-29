@@ -29,6 +29,7 @@ namespace StvDEV.Inspector
             if (property.propertyType == SerializedPropertyType.Integer)
             {
                 PopupField<string> field = new PopupField<string>(property.displayName, attributeObject.Captions.ToList(), 0);
+                field.AddToClassList("unity-base-field__aligned");
                 field.RegisterCallback<ChangeEvent<string>>(x =>
                 {
                     property.intValue = Array.IndexOf(attributeObject.Captions, x.newValue);
