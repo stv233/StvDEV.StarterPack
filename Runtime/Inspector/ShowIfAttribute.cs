@@ -7,7 +7,7 @@ namespace StvDEV.Inspector
     /// Hides or disables the display of a field in the inspector by the value of a field of type bool.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property |
-        AttributeTargets.Class | AttributeTargets.Struct, Inherited = true)]
+        AttributeTargets.Class | AttributeTargets.Struct, Inherited = true, AllowMultiple = true)]
     public class ShowIfAttribute : PropertyAttribute
     {
         /// <summary>
