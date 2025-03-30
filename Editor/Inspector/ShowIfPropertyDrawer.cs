@@ -28,6 +28,13 @@ namespace StvDEV.Inspector
 
             container.TrackSerializedObjectValue(property.serializedObject, _ =>
             {
+                UpdateVisibility();
+            });
+
+            UpdateVisibility();
+
+            void UpdateVisibility()
+            {
                 ShowIfAttribute hideIf = (ShowIfAttribute)attribute;
                 bool enabled = GetConditionalHideAttributeResult(hideIf, property);
 
@@ -41,7 +48,7 @@ namespace StvDEV.Inspector
                 {
                     field.style.display = DisplayStyle.None;
                 }
-            });
+            }
 
             return container;
         }
