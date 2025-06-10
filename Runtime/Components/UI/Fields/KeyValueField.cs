@@ -79,7 +79,7 @@ namespace StvDEV.Components.UI.Fields
             set => _valueInput.contentType = value;
         }
 
-        public override bool ReadOnly
+        public override bool IsReadOnly
         {
             get => _keyInput.readOnly;
             set

@@ -10,18 +10,18 @@ namespace StvDEV.Vibration
         private const int DEFAULT_AMPLITUDE = -1;
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-        private static AndroidJavaClass _unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        private static AndroidJavaObject _currentActivity = _unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-        private static AndroidJavaObject _vibrator = _currentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator");
-    	private static AndroidJavaClass _vibrationEffectClass;
-		private static AndroidJavaObject _vibrationEffect;
+        private static AndroidJavaClass s_unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        private static AndroidJavaObject s_currentActivity = s_unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+        private static AndroidJavaObject s_vibrator = _currentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator");
+    	private static AndroidJavaClass s_vibrationEffectClass;
+		private static AndroidJavaObject s_vibrationEffect;
 #else
 
-        private static AndroidJavaClass _unityPlayer;
-        private static AndroidJavaObject _currentActivity;
-        private static AndroidJavaObject _vibrator = null;
-        private static AndroidJavaClass _vibrationEffectClass;
-        private static AndroidJavaObject _vibrationEffect;
+        private static AndroidJavaClass s_unityPlayer;
+        private static AndroidJavaObject s_currentActivity;
+        private static AndroidJavaObject s_vibrator = null;
+        private static AndroidJavaClass s_vibrationEffectClass;
+        private static AndroidJavaObject s_vibrationEffect;
 #endif
 
         /// <summary>
@@ -102,17 +102,17 @@ namespace StvDEV.Vibration
             {
                 if (GetSDKLevel() >= 26)
                 {
-                    if (_vibrationEffectClass == null)
+                    if (s_vibrationEffectClass == null)
                     {
-                        _vibrationEffectClass = new AndroidJavaClass("android.os.VibrationEffect");
+                        s_vibrationEffectClass = new AndroidJavaClass("android.os.VibrationEffect");
                     }
 
-                    _vibrationEffect = _vibrationEffectClass.CallStatic<AndroidJavaObject>("createOneShot", new object[] { milliseconds, amplitude });
-                    _vibrator.Call("vibrate", _vibrationEffect);
+                    s_vibrationEffect = s_vibrationEffectClass.CallStatic<AndroidJavaObject>("createOneShot", new object[] { milliseconds, amplitude });
+                    s_vibrator.Call("vibrate", s_vibrationEffect);
                 }
                 else
                 {
-                    _vibrator.Call("vibrate", milliseconds);
+                    s_vibrator.Call("vibrate", milliseconds);
                 }
             }
             else
@@ -130,7 +130,7 @@ namespace StvDEV.Vibration
         {
             if (IsAndroid())
             {
-                _vibrator.Call("vibrate", pattern, repeat);
+                s_vibrator.Call("vibrate", pattern, repeat);
             }
             else
             {
@@ -145,7 +145,7 @@ namespace StvDEV.Vibration
         {
             if (IsAndroid())
             {
-                _vibrator.Call("cancel");
+                s_vibrator.Call("cancel");
             }
         }
 

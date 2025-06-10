@@ -20,7 +20,7 @@ namespace StvDEV.Components.UI.Fields
             set => _toggle.isOn = value;
         }
 
-        public override bool ReadOnly
+        public override bool IsReadOnly
         {
             get => _toggle.interactable;
             set => _toggle.interactable = value;

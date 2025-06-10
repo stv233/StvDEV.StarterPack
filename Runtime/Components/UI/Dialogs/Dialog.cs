@@ -1,8 +1,5 @@
 using StvDEV.Patterns;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace StvDEV.Components.UI.Dialogs
 {
@@ -11,10 +8,25 @@ namespace StvDEV.Components.UI.Dialogs
     /// </summary>
     public enum DialogResult
     {
+        /// <summary>
+        /// None.
+        /// </summary>
         None,
+        /// <summary>
+        /// Ok result.
+        /// </summary>
         Ok,
+        /// <summary>
+        /// Yes result.
+        /// </summary>
         Yes,
+        /// <summary>
+        /// No result.
+        /// </summary>
         No,
+        /// <summary>
+        /// Cancel result.
+        /// </summary>
         Cancel,
     }
 

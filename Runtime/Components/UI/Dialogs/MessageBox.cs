@@ -17,8 +17,17 @@ namespace StvDEV.Components.UI.Dialogs
         /// </summary>
         public enum MessageBoxButtons
         {
+            /// <summary>
+            /// Ok button.
+            /// </summary>
             Ok,
+            /// <summary>
+            /// Yes & No buttons.
+            /// </summary>
             YesNo,
+            /// <summary>
+            /// Yes & No & Cancel buttons.
+            /// </summary>
             YesNoCancel,
         }
 

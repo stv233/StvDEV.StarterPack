@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Scripting.APIUpdating;
@@ -31,7 +30,7 @@ namespace StvDEV.Components.UI
         /// <summary>
         /// Returns whether this menu is active.
         /// </summary>
-        public bool IsActive => gameObject.activeInHierarchy;
+        public bool IsActive => gameObject.activeSelf;
 
         /// <summary>
         /// Open menu.

@@ -93,5 +93,13 @@ namespace StvDEV.Types
                 return JsonConvert.DeserializeObject<T>(PlayerPrefs.GetString(_prefsName,JsonConvert.SerializeObject(_defaultValue)));
             }
         }
+
+        /// <summary>
+        /// Delete value if exist.
+        /// </summary>
+        public void Delete()
+        {
+            PlayerPrefs.DeleteKey(_prefsName);
+        }
     }
 }

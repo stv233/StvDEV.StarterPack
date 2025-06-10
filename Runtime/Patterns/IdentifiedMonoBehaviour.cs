@@ -9,7 +9,7 @@ namespace StvDEV.Patterns
     /// </summary>
     public abstract class IdentifiedMonoBehaviour : MonoBehaviour
     {
-        [ReadOnly]
+        [ReadOnly, Tooltip("Instance id.")]
         [SerializeField] private string _id;
 
         /// <summary>

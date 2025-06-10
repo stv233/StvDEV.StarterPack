@@ -26,26 +26,26 @@ namespace StvDEV.Components.Localization
     [HelpURL("https://docs.stvdev.pro/StvDEV/Components/Localization/LocalizationManager/index.html")]
     public class LocalizationManager : MonoBehaviourSingleton<LocalizationManager>
     {
-        private static string _language = "en-US";
-        private static UnityEvent<string> _languageChanged = new UnityEvent<string>();
+        private static string s_language = "en-US";
+        private static UnityEvent<string> s_languageChanged = new UnityEvent<string>();
 
         /// <summary>
         /// Gets or sets the current language.
         /// </summary>
         public static string Language
         {
-            get => _language;
+            get => s_language;
             set
             {
-                _language = value;
-                _languageChanged?.Invoke(value);
+                s_language = value;
+                s_languageChanged?.Invoke(value);
             }
         }
 
         /// <summary>
         /// On dynamic language changed.
         /// </summary>
-        public static UnityEvent<string> LanguageChanged => _languageChanged;
+        public static UnityEvent<string> LanguageChanged => s_languageChanged;
 
     }
 }

@@ -41,7 +41,7 @@ namespace StvDEV.Components.UI.Fields
         /// <summary>
         /// Gets or sets readonly field parameter.
         /// </summary>
-        public abstract bool ReadOnly { get; set; }
+        public abstract bool IsReadOnly { get; set; }
 
         /// <summary>
         /// Gets that field is focused now.

@@ -14,7 +14,7 @@ namespace StvDEV.Components.UI
     [HelpURL("https://docs.stvdev.pro/StvDEV/Components/UI/UIMenuManager/index.html")]
     public class UIMenuManager : MonoBehaviourSingleton<UIMenuManager>
     {
-        private readonly Dictionary<string, UIMenu> _menus = new Dictionary<string, UIMenu>();
+        private readonly Dictionary<string, UIMenu> _menus = new();
 
         protected override void AwakeSingletone()
         {

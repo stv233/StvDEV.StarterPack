@@ -8,6 +8,7 @@ namespace StvDEV.ProjectBrowser.Folders
     /// </summary>
     internal class FoldersIcon : ScriptableObject 
     {
+        [Header("Icons Data")]
         [SerializeField] private Texture2D _icon;
         [SerializeField] private List<string> _folders = new List<string>();
 

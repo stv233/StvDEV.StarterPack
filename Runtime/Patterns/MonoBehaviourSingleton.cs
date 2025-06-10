@@ -24,7 +24,7 @@ namespace StvDEV.Patterns
                     _instance = FindObjectOfType<T>(true);
                     if (!_instance)
                     {
-                        Debug.LogError($"Singleton of type {typeof(T)} not contains in scene");
+                        Debug.LogError($"[{nameof(MonoBehaviourSingleton<T>)}] Singleton of type {typeof(T)} not contains in scene");
                         return null;
                     }
 
@@ -52,7 +52,7 @@ namespace StvDEV.Patterns
             }
             else if (_instance != this)
             {
-                Debug.LogError($"Dublicated singleton instance {nameof(T)}", this);
+                Debug.LogError($"[{nameof(MonoBehaviourSingleton<T>)}] Dublicated singleton instance {nameof(T)}", this);
             }
         }
 

@@ -55,7 +55,7 @@ namespace StvDEV.Components.UI.Fields
         /// </summary>
         public virtual IReadOnlyList<string> Options => _dropdown.options.Select(x => x.text).ToList();
 
-        public override bool ReadOnly
+        public override bool IsReadOnly
         {
             get => _dropdown.interactable;
             set => _dropdown.interactable = value;
