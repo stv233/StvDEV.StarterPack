@@ -22,13 +22,13 @@ namespace StvDEV.Inspector
         /// <returns>Root element</returns>
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            VisualElement container = new VisualElement();
+            VisualElement container = new();
 
             EnumAttribute attributeObject = (EnumAttribute)attribute;
 
             if (property.propertyType == SerializedPropertyType.Integer)
             {
-                PopupField<string> field = new PopupField<string>(property.displayName, attributeObject.Captions.ToList(), 0);
+                PopupField<string> field = new(property.displayName, attributeObject.Captions.ToList(), 0);
                 field.AddToClassList("unity-base-field__aligned");
                 field.RegisterCallback<ChangeEvent<string>>(x =>
                 {
@@ -36,11 +36,15 @@ namespace StvDEV.Inspector
                     property.serializedObject.ApplyModifiedProperties();
                 });
 
+                if (property.intValue >= 0 && property.intValue < attributeObject.Captions.Length)
+                {
+                    field.SetValueWithoutNotify(attributeObject.Captions[property.intValue]);
+                }
                 container.Add(field);
             }
             else
             {
-                HelpBox box = new HelpBox("Incorrect type for the Enum attribute.", HelpBoxMessageType.Error);
+                HelpBox box = new("Incorrect type for the Enum attribute.", HelpBoxMessageType.Error);
                 container.Add(box);
             }
             return container;

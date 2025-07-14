@@ -19,14 +19,14 @@ namespace StvDEV.Inspector
         /// <returns>Root element</returns>
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            VisualElement container = new VisualElement();
+            VisualElement container = new();
 
             if (property.propertyType == SerializedPropertyType.Boolean)
             {
                 CaptionedBoolAttribute attributeObject = (CaptionedBoolAttribute)attribute;
 
-                PopupField<string> field = new PopupField<string>(property.displayName, new List<string> { attributeObject.False, attributeObject.True}, property.boolValue ? 1 : 0);
-                field.value = property.boolValue ? attributeObject.True : attributeObject.False;
+                PopupField<string> field = new(property.displayName, new List<string> { attributeObject.False, attributeObject.True}, property.boolValue ? 1 : 0);
+                field.SetValueWithoutNotify(property.boolValue ? attributeObject.True : attributeObject.False);
                 field.AddToClassList("unity-base-field__aligned");
 
                 field.RegisterCallback<ChangeEvent<string>>(x =>
@@ -39,7 +39,7 @@ namespace StvDEV.Inspector
             }
             else
             {
-                HelpBox box = new HelpBox("Incorrect type for the CaptionedBool attribute.", HelpBoxMessageType.Error);
+                HelpBox box = new("Incorrect type for the CaptionedBool attribute.", HelpBoxMessageType.Error);
                 container.Add(box);
             }
             return container;
