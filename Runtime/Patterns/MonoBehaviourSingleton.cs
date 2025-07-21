@@ -28,7 +28,7 @@ namespace StvDEV.Patterns
                         return null;
                     }
 
-                    _instance.AwakeSingletone();
+                    _instance.AwakeSingleton();
                 }
 
                 return _instance;
@@ -41,14 +41,14 @@ namespace StvDEV.Patterns
         public static bool InstanceIsNotNull => _instance;
 
         /// <summary>
-        /// Awakes this instance
+        /// Awakes this instance.
         /// </summary>
         protected void Awake()
         {
             if (!_instance)
             {
                 _instance = GetComponent<T>();
-                AwakeSingletone();
+                AwakeSingleton();
             }
             else if (_instance != this)
             {
@@ -59,7 +59,7 @@ namespace StvDEV.Patterns
         /// <summary>
         /// On Awake.
         /// </summary>
-        protected virtual void AwakeSingletone() { }
+        protected virtual void AwakeSingleton() { }
 
     }
 }

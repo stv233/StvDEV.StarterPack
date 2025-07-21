@@ -10,7 +10,7 @@ namespace StvDEV.Inspector
        AttributeTargets.Class | AttributeTargets.Struct, Inherited = true)]
     public class EnumAttribute : PropertyAttribute
     {
-        private string[] _captions = new string[0];
+        private readonly string[] _captions = new string[0];
 
         /// <summary>
         /// Captions.

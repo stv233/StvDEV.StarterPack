@@ -15,20 +15,25 @@ namespace StvDEV.Components.UI.Dialogs
         /// <summary>
         /// Buttons for message box.
         /// </summary>
+        [Flags]
         public enum MessageBoxButtons
         {
             /// <summary>
             /// Ok button.
             /// </summary>
-            Ok,
+            Ok = 1,
             /// <summary>
-            /// Yes & No buttons.
+            /// Yes button.
             /// </summary>
-            YesNo,
+            Yes = 2,
             /// <summary>
-            /// Yes & No & Cancel buttons.
+            /// No button.
             /// </summary>
-            YesNoCancel,
+            No = 4,
+            /// <summary>
+            /// Cancel button.
+            /// </summary>
+            Cancel = 8
         }
 
         [Header("Text")]
@@ -55,7 +60,7 @@ namespace StvDEV.Components.UI.Dialogs
         /// </summary>
         public string Message => _text.text;
 
-        protected override void AwakeSingletone()
+        protected override void AwakeSingleton()
         {
             _ok.onClick.AddListener(() =>
             {
@@ -74,35 +79,15 @@ namespace StvDEV.Components.UI.Dialogs
                 Hide(DialogResult.Cancel);
             });
             Close();
-            base.AwakeSingletone();
+            base.AwakeSingleton();
         }
 
         private void ShowButtons(MessageBoxButtons buttons)
         {
-            HideAllButtons();
-            switch (buttons)
-            {
-                case MessageBoxButtons.YesNo:
-                    _yes.gameObject.SetActive(true);
-                    _no.gameObject.SetActive(true);
-                    break;
-                case MessageBoxButtons.YesNoCancel:
-                    _yes.gameObject.SetActive(true);
-                    _no.gameObject.SetActive(true);
-                    _cancel.gameObject.SetActive(true);
-                    break;
-                default:
-                    _ok.gameObject.SetActive(true);
-                    break;
-            }
-        }
-
-        private void HideAllButtons()
-        {
-            _ok.gameObject.SetActive(false);
-            _yes.gameObject.SetActive(false);
-            _no.gameObject.SetActive(false);
-			_cancel.gameObject.SetActive(false);
+            _ok.gameObject.SetActive(buttons.HasFlag(MessageBoxButtons.Ok));
+            _yes.gameObject.SetActive(buttons.HasFlag(MessageBoxButtons.Yes));
+            _no.gameObject.SetActive(buttons.HasFlag(MessageBoxButtons.No));
+            _cancel.gameObject.SetActive(buttons.HasFlag(MessageBoxButtons.Cancel));
         }
 
         /// <summary>

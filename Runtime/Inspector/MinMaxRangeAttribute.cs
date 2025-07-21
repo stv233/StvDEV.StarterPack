@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace StvDEV.Inspector
@@ -12,8 +10,8 @@ namespace StvDEV.Inspector
        AttributeTargets.Class | AttributeTargets.Struct, Inherited = true)]
     public class MinMaxRangeAttribute : PropertyAttribute
     {
-        private float? _maximum;
-        private float _minimum;
+        private readonly float? _maximum;
+        private readonly float _minimum;
 
         /// <summary>
         /// Maximum slider value.
@@ -37,8 +35,8 @@ namespace StvDEV.Inspector
         /// <param name="minimum">Minimum value</param>
         public MinMaxRangeAttribute(float maximum, float minimum = 0)
         {
-            this._maximum = maximum;
-            this._minimum = minimum;
+            _maximum = maximum;
+            _minimum = minimum;
         }
     }
 }

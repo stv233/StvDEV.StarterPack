@@ -15,7 +15,7 @@ namespace StvDEV.ProjectBrowser.Folders
         /// </summary>
         internal const string STORAGE_PATH = "StvDEV/Icons";
 
-        private static Dictionary<string, Texture> s_iconsCache = new Dictionary<string, Texture>();
+        private static readonly Dictionary<string, Texture> s_iconsCache = new();
 
         /// <summary>
         /// Collection of folders for which icons are installed.

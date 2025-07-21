@@ -12,8 +12,8 @@ namespace StvDEV.Inspector
        AttributeTargets.Class | AttributeTargets.Struct, Inherited = true)]
     public class CaptionedBoolAttribute : PropertyAttribute
     {
-        private string _true;
-        private string _false;
+        private readonly string _true;
+        private readonly string _false;
 
         /// <summary>
         /// True annotation.

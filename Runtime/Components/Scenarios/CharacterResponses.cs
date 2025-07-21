@@ -136,15 +136,15 @@ namespace StvDEV.Components.Scenarios
 
                 if (_subtitlesText)
                 {
-                    _subtitlesText?.SetText(text);
-                    _subtitlesText?.gameObject.SetActive(true);
+                    _subtitlesText.SetText(text);
+                    _subtitlesText.gameObject.SetActive(true);
                 }
 
                 if (clip)
                 {
                     if (_audioSource)
                     {
-                        _audioSource?.PlayOneShot(clip);
+                        _audioSource.PlayOneShot(clip);
                     }
                 }
                 StartCoroutine(HideDelay(response.Duration));
@@ -164,11 +164,11 @@ namespace StvDEV.Components.Scenarios
             StopAllCoroutines();
             if (_subtitlesText)
             {
-                _subtitlesText?.gameObject.SetActive(false);
+                _subtitlesText.gameObject.SetActive(false);
             }
             if (_audioSource)
             {
-                _audioSource?.Stop();
+                _audioSource.Stop();
             }
         }
     }

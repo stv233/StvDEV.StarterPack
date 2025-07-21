@@ -18,8 +18,8 @@ namespace StvDEV.Inspector
         /// <returns>Root element</returns>
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            VisualElement container = new VisualElement();
-            PropertyField field = new PropertyField(property);
+            VisualElement container = new();
+            PropertyField field = new(property);
             container.Add(field);
 
             field.SetEnabled(false);

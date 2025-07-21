@@ -42,8 +42,7 @@ namespace StvDEV.Components.UI.Buttons
                 _text = GetComponentInChildren<TMP_Text>();
                 if (_text == null)
                 {
-                    _text = GetComponent<TMP_Text>();
-                    if (_text == null)
+                    if (!TryGetComponent(out _text))
                     {
                         _text = gameObject.AddComponent<TMP_Text>();
                     }

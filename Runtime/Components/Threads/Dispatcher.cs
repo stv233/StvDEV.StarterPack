@@ -14,7 +14,7 @@ namespace StvDEV.Components.Threads
     [DefaultExecutionOrder(-16000)]
     public class Dispatcher : MonoBehaviourSingleton<Dispatcher>
     {
-        private ConcurrentQueue<Action> _actions = new ConcurrentQueue<Action>();
+        private readonly ConcurrentQueue<Action> _actions = new();
         private Thread _mainThread;
 
         /// <summary>
@@ -23,10 +23,10 @@ namespace StvDEV.Components.Threads
         /// <returns>True - if the current thread is the main Unity thread, otherwise False</returns>
         public static bool InvokeRequired => Instance._mainThread.Equals(Thread.CurrentThread);
 
-        protected override void AwakeSingletone()
+        protected override void AwakeSingleton()
         {
             _mainThread = Thread.CurrentThread;
-            base.AwakeSingletone();
+            base.AwakeSingleton();
         }
 
         void Update()

@@ -26,13 +26,13 @@ namespace StvDEV.Inspector
             Disable
         }
 
-        private string _conditionalSourceField = "";
-        private bool _hideInInspector = false;
-        private bool _byBool = false;
-        private bool _inverse = false;
-        private bool _value = false;
-        private bool _byFunc = false;
-        private Func<bool> _func;
+        private readonly string _conditionalSourceField = "";
+        private readonly bool _hideInInspector = false;
+        private readonly bool _byBool = false;
+        private readonly bool _inverse = false;
+        private readonly bool _value = false;
+        private readonly bool _byFunc = false;
+        private readonly Func<bool> _func;
 
         /// <summary>
         /// Gets the value of the conditional source field.
@@ -135,6 +135,7 @@ namespace StvDEV.Inspector
         {
             _byFunc = true;
             _func = func;
+            _hideInInspector = hideType == HideType.Hide;
         }
     }
 }

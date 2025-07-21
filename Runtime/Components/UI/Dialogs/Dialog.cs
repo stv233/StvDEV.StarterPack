@@ -38,10 +38,10 @@ namespace StvDEV.Components.UI.Dialogs
     {
         private Action<DialogResult> _callback;
 
-        protected override void AwakeSingletone()
+        protected override void AwakeSingleton()
         {
             Hide(DialogResult.None);
-            base.AwakeSingletone();
+            base.AwakeSingleton();
         }
 
         /// <summary>

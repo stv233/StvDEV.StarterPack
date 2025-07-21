@@ -20,8 +20,8 @@ namespace StvDEV.Inspector
         /// <returns>Root element</returns>
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            VisualElement container = new VisualElement();
-            PropertyField field = new PropertyField(property);
+            VisualElement container = new();
+            PropertyField field = new(property);
 
             container.Add(field);
 
@@ -110,7 +110,7 @@ namespace StvDEV.Inspector
             }
             else if (showIf.ByFunc)
             {
-                enabled = showIf.Func != null ? showIf.Func.Invoke() : true;
+                enabled = showIf.Func == null || showIf.Func.Invoke();
             }
             else
             {
@@ -122,24 +122,14 @@ namespace StvDEV.Inspector
 
                 if (sourcePropertyValue != null)
                 {
-                    switch (sourcePropertyValue.propertyType)
+                    enabled = sourcePropertyValue.propertyType switch
                     {
-                        case SerializedPropertyType.Boolean:
-                            enabled = sourcePropertyValue.boolValue;
-                            break;
-                        case SerializedPropertyType.Integer:
-                            enabled = sourcePropertyValue.intValue != 0;
-                            break;
-                        case SerializedPropertyType.Float:
-                            enabled = sourcePropertyValue.floatValue != 0;
-                            break;
-                        case SerializedPropertyType.ObjectReference:
-                            enabled = sourcePropertyValue.objectReferenceValue;
-                            break;
-                        default:
-                            throw new NotSupportedException($"ShowIf attribute does not support the type of this field type: {sourcePropertyValue.propertyType}");
-                    }
-
+                        SerializedPropertyType.Boolean => sourcePropertyValue.boolValue,
+                        SerializedPropertyType.Integer => sourcePropertyValue.intValue != 0,
+                        SerializedPropertyType.Float => sourcePropertyValue.floatValue != 0,
+                        SerializedPropertyType.ObjectReference => (bool)sourcePropertyValue.objectReferenceValue,
+                        _ => throw new NotSupportedException($"ShowIf attribute does not support the type of this field type: {sourcePropertyValue.propertyType}"),
+                    };
                     if (inverse)
                     {
                         enabled = !enabled;

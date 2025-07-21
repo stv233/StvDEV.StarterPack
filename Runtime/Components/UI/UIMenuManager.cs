@@ -16,7 +16,7 @@ namespace StvDEV.Components.UI
     {
         private readonly Dictionary<string, UIMenu> _menus = new();
 
-        protected override void AwakeSingletone()
+        protected override void AwakeSingleton()
         {
             FindAllMenu();
         }

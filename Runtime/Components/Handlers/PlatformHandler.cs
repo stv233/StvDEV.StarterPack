@@ -87,13 +87,13 @@ namespace StvDEV.Components.Handlers
         /// </summary>
         public static UnityEvent<PlatformType> PlatformDetected => Instance._platformDetected;
 
-        protected override void AwakeSingletone()
+        protected override void AwakeSingleton()
         {
             if (_trigger == 1)
             {
                 HandlePlatform();
             }
-            base.AwakeSingletone();
+            base.AwakeSingleton();
         }
 
         /// <summary>
@@ -111,28 +111,15 @@ namespace StvDEV.Components.Handlers
                 return _forcedPlatform;
             }
 
-            switch (Application.platform)
+            return Application.platform switch
             {
-                case UnityEngine.RuntimePlatform.WindowsPlayer:
-                case UnityEngine.RuntimePlatform.WindowsEditor:
-                case UnityEngine.RuntimePlatform.LinuxPlayer:
-                case UnityEngine.RuntimePlatform.LinuxEditor:
-                case UnityEngine.RuntimePlatform.OSXPlayer:
-                case UnityEngine.RuntimePlatform.OSXEditor:
-                    return PlatformType.Desktop;
-                case UnityEngine.RuntimePlatform.WindowsServer:
-                case UnityEngine.RuntimePlatform.LinuxServer:
-                case UnityEngine.RuntimePlatform.OSXServer:
-                    return PlatformType.Server;
-                case UnityEngine.RuntimePlatform.Android:
-                    return PlatformType.Android;
-                case UnityEngine.RuntimePlatform.IPhonePlayer:
-                    return PlatformType.Android;
-                case UnityEngine.RuntimePlatform.WebGLPlayer:
-                    return PlatformType.Web;
-                default:
-                    return PlatformType.None;
-            }
+                UnityEngine.RuntimePlatform.WindowsPlayer or UnityEngine.RuntimePlatform.WindowsEditor or UnityEngine.RuntimePlatform.LinuxPlayer or UnityEngine.RuntimePlatform.LinuxEditor or UnityEngine.RuntimePlatform.OSXPlayer or UnityEngine.RuntimePlatform.OSXEditor => PlatformType.Desktop,
+                UnityEngine.RuntimePlatform.WindowsServer or UnityEngine.RuntimePlatform.LinuxServer or UnityEngine.RuntimePlatform.OSXServer => PlatformType.Server,
+                UnityEngine.RuntimePlatform.Android => PlatformType.Android,
+                UnityEngine.RuntimePlatform.IPhonePlayer => PlatformType.Android,
+                UnityEngine.RuntimePlatform.WebGLPlayer => PlatformType.Web,
+                _ => PlatformType.None,
+            };
         }
 
         private void HandlePlatformType(PlatformType type)

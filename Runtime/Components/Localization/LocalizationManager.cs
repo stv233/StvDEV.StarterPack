@@ -1,8 +1,4 @@
 using StvDEV.Patterns;
-using StvDEV.Types;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,7 +23,7 @@ namespace StvDEV.Components.Localization
     public class LocalizationManager : MonoBehaviourSingleton<LocalizationManager>
     {
         private static string s_language = "en-US";
-        private static UnityEvent<string> s_languageChanged = new UnityEvent<string>();
+        private static readonly UnityEvent<string> s_languageChanged = new();
 
         /// <summary>
         /// Gets or sets the current language.
