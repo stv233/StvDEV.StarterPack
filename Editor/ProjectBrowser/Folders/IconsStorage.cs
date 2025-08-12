@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -28,16 +29,20 @@ namespace StvDEV.ProjectBrowser.Folders
         internal static void Rebuild()
         {
             s_iconsCache.Clear();
-            FoldersIcon[] icons 
-                = AssetDatabase.FindAssets("*", new string[] { $"Assets/Editor Default Resources/{STORAGE_PATH}" })
-                    .Select(x => AssetDatabase.LoadAssetAtPath<FoldersIcon>(AssetDatabase.GUIDToAssetPath(x)))
-                    .Where(x => x != null).ToArray();
 
-            foreach (FoldersIcon icon in icons)
+            if (Directory.Exists(Path.Combine("Assets", "Settings", STORAGE_PATH)))
             {
-                foreach(string folder in icon.Folders)
+                FoldersIcon[] icons
+                    = AssetDatabase.FindAssets("*", new string[] { Path.Combine("Assets", "Settings", STORAGE_PATH) })
+                        .Select(x => AssetDatabase.LoadAssetAtPath<FoldersIcon>(AssetDatabase.GUIDToAssetPath(x)))
+                        .Where(x => x != null).ToArray();
+
+                foreach (FoldersIcon icon in icons)
                 {
-                    s_iconsCache.TryAdd(folder, icon.Icon);
+                    foreach (string folder in icon.Folders)
+                    {
+                        s_iconsCache.TryAdd(folder, icon.Icon);
+                    }
                 }
             }
 

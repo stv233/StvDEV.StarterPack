@@ -161,7 +161,11 @@ namespace StvDEV.ProjectBrowser.Folders
 
         private static bool PathIsFolder(string path)
         {
-            return File.GetAttributes(path).HasFlag(FileAttributes.Directory);
+            if (!string.IsNullOrEmpty(path))
+            {
+                return File.GetAttributes(path).HasFlag(FileAttributes.Directory);
+            }
+            return false;
         }
 
         private static bool FolderHasIcon(string folder)
@@ -176,14 +180,14 @@ namespace StvDEV.ProjectBrowser.Folders
                 RemoveIconFromFolder(folder);
             }
 
-            FoldersIcon iconSO = EditorGUIUtility.Load(Path.Combine(IconsStorage.STORAGE_PATH, $"{icon}.asset")) as FoldersIcon;
+            FoldersIcon iconSO = AssetDatabase.LoadAssetAtPath<FoldersIcon>(Path.Combine("Assets", "Settings", IconsStorage.STORAGE_PATH, $"{icon}.asset")) as FoldersIcon;
             if (iconSO == null)
             {
                 iconSO = ScriptableObject.CreateInstance<FoldersIcon>();
                 Texture2D iconImage = Resources.Load<Texture2D>(Path.Combine(IconsStorage.STORAGE_PATH, "2D", icon)); 
                 iconSO.Icon = iconImage;
 
-                string storagePath = Path.Combine("Assets", "Editor Default Resources", IconsStorage.STORAGE_PATH);
+                string storagePath = Path.Combine("Assets", "Settings", IconsStorage.STORAGE_PATH);
                 if (!Directory.Exists(storagePath))
                 {
                     Directory.CreateDirectory(storagePath);
