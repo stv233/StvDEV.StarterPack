@@ -11,7 +11,7 @@ namespace StvDEV.ProjectBrowser.Folders
     {
         private const string PARENT_MENU = "Assets/Mark Folder As";
 
-        [MenuItem(PARENT_MENU + "/Default")]
+        [MenuItem(PARENT_MENU + "/Default", priority = -12)]
         private static void MarkAsDefault()
         {
             RemoveIconFromFolder(Selection.assetGUIDs[0]);
@@ -180,7 +180,7 @@ namespace StvDEV.ProjectBrowser.Folders
                 RemoveIconFromFolder(folder);
             }
 
-            FoldersIcon iconSO = AssetDatabase.LoadAssetAtPath<FoldersIcon>(Path.Combine("Assets", "Settings", IconsStorage.STORAGE_PATH, $"{icon}.asset")) as FoldersIcon;
+            FoldersIcon iconSO = AssetDatabase.LoadAssetAtPath<FoldersIcon>(Path.Combine("Assets", "Settings", IconsStorage.STORAGE_PATH, $"{icon}.asset"));
             if (iconSO == null)
             {
                 iconSO = ScriptableObject.CreateInstance<FoldersIcon>();
@@ -211,7 +211,7 @@ namespace StvDEV.ProjectBrowser.Folders
 
             string icon = Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(IconsStorage.Folders[folder]));
 
-            FoldersIcon iconSO = EditorGUIUtility.Load(Path.Combine(IconsStorage.STORAGE_PATH, $"{icon}.asset")) as FoldersIcon;
+            FoldersIcon iconSO = AssetDatabase.LoadAssetAtPath<FoldersIcon>(Path.Combine("Assets", "Settings", IconsStorage.STORAGE_PATH, $"{icon}.asset"));
 
             iconSO.Folders.Remove(folder);
             EditorUtility.SetDirty(iconSO);
